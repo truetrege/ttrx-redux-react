@@ -92,11 +92,27 @@ code {
   grid-gap: 0;
   align-self: flex-start;
 }
-.next-block {
+.next-block-4 {
   display: grid;
   grid-template-columns: repeat(4, var(--tile-size));
   align-self: flex-start;
 }
+.next-block-3 {
+  display: grid;
+  grid-template-columns: repeat(3, var(--tile-size));
+  align-self: flex-start;
+}
+.next-block-2 {
+  display: grid;
+  grid-template-columns: repeat(2, var(--tile-size));
+  align-self: flex-start;
+}
+.next-block-1 {
+  display: grid;
+  grid-template-columns: repeat(1, var(--tile-size));
+  align-self: flex-start;
+}
+
 .score-board-button {
   display: block;
   padding: 1em;

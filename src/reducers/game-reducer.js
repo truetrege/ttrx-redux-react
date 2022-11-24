@@ -1,6 +1,8 @@
 import { defaultState } from '../utils'
 import { pushSelectedGridSquares } from '../utils'
 import { changeSelectedGrid } from '../utils'
+import { checkSelectedShape } from '../utils'
+import { shapes } from '../utils'
 
 import {
     MOUSE_MOVE, RESTART, GAME_OVER, MOUSE_DOWN,MOUSE_UP
@@ -15,7 +17,8 @@ const gameReducer = (state = defaultState(), action) => {
             if(state.mouseDown){
 
                 const newSelectedGridSqueares = pushSelectedGridSquares(state.selectedGridSqueares,{row:action.row,col:action.col})
-                const newGrid = changeSelectedGrid(state.grid,newSelectedGridSqueares)
+                const newGrid = changeSelectedGrid(state.grid,newSelectedGridSqueares);
+                checkSelectedShape(newSelectedGridSqueares,shapes[state.nextShape])
                 return {...state,grid:newGrid,selectedGridSqueares:newSelectedGridSqueares}
             }
             return state;

@@ -25,14 +25,14 @@ export const shapes = [
     [[1, 1], [1, 1]], [1, 1, 1, 1], [[1], [1], [1], [1]],
     /*2x3*/
     [[0, 1, 0], [1, 1, 1]], [[1, 1, 0], [0, 1, 1]], [[0, 1, 1], [1, 1, 0]],
-    ['111', '010'], [[1, 0, 0], [1, 1, 1]], [[0, 0, 1], [1, 1, 1]],
-    ['111', '100'], ['111', '001'],
+    [[1,1,1], [0,1,0]], [[1, 0, 0], [1, 1, 1]], [[0, 0, 1], [1, 1, 1]],
+    [[1,1,1], [1,0,0]], [[1,1,1],[0,0,1]],
     /*3x2*/
-    ['10', '11', '01'], ['01', '11', '10'], ['10', '10', '11'],
-    ['11', '01', '01'], ['11', '10', '10'], ['01', '01', '11'],
-    ['10', '11', '10'], ['01', '11', '01'],
+    [[1,0], [1,1], [0,1]], [[0,1],[1,1],[1,0]], [[1,0], [1,0],[1,1]],
+    [[1,1], [0,1], [0,1]], [[1,1], [1,0], [1,0]], [[0,1], [0,1], [1,1]],
+    [[1,0], [1,1], [1,0]], [[0,1], [1,1], [0,1]],
 
-    /*NEW FIGURES*/
+    /*NEW ShapeS*/
     //['101','111'],
 
 ];
@@ -90,4 +90,42 @@ export const defaultState = () => {
         // Game isn't over yet
         gameOver: false
     }
+}
+export const checkSelectedShape=(selected,shape)=>{
+
+    const selectedShapeMap={
+        row:{max:-1,min:99,size:0},
+        col:{max:-1,min:99,size:0}
+    }
+    selected.forEach(element => {
+        selectedShapeMap.row.max = element.row > selectedShapeMap.row.max?element.row:selectedShapeMap.row.max;
+        selectedShapeMap.col.max = element.col > selectedShapeMap.col.max?element.col:selectedShapeMap.col.max;
+        selectedShapeMap.row.min = element.row < selectedShapeMap.row.min?element.row:selectedShapeMap.row.min;
+        selectedShapeMap.col.min = element.col < selectedShapeMap.col.min?element.col:selectedShapeMap.col.min;
+    });
+    selectedShapeMap.row.size = selectedShapeMap.row.max - selectedShapeMap.row.min + 1;
+    selectedShapeMap.col.size = selectedShapeMap.col.max - selectedShapeMap.col.min + 1;
+
+    if(selectedShapeMap.row.size !== shape.length){
+        return false;
+    }
+    if(shape.length !== 1 && selectedShapeMap.col.size !== shape[0].length){
+        return false;
+    }
+    
+    const selectedShape = []; 
+    
+    for (let i = 0; i < selectedShapeMap.row.size; i++) {
+        selectedShape[i] = [];
+        for (let j = 0; j < selectedShapeMap.col.size; j++) {
+            selectedShape[i][j] = 0;
+        }
+      }
+    selected.forEach((shape) => {
+        selectedShape[shape.row - selectedShapeMap.row.min][shape.col - selectedShapeMap.col.min] = 1;
+    });
+    
+
+    console.log(selectedShape,shape.length)
+
 }

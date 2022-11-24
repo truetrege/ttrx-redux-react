@@ -8,16 +8,26 @@ import GridSquare from './GridSquare'
 export default function NextBlock(props) {
     const nextShape = useSelector((state) => state.game.nextShape)
    
-    const box = [[0,0,0,0], [0,0,0,0], [0,0,0,0], [0,0,0,0]]
+    const box = shapes[nextShape];
+    const size = Array.isArray(box[0])?box[0].length:box.length;
+    console.log(box)
+    const classBox = "next-block-"+size;
+
     // Map the block to the grid
     const grid = box.map((rowArray, row) => {
-        return rowArray.map((square, col) => {
-            return <GridSquare key={`${row}${col}`} color={square} />
-        })
+        if(Array.isArray(rowArray)){
+            return rowArray.map((square, col) => {
+                return <GridSquare key={`${row}${col}`} color={square} />
+            })
+        }else{
+            return <GridSquare key={`${row}${row}`} color={rowArray} />
+        }
+
+        
     })
 
     return (
-        <div className="next-block">
+        <div className={classBox}>
             {grid}
         </div>
     )
