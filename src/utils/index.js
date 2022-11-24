@@ -39,28 +39,28 @@ export const shapes = [
 export const maxLengthElements = 4;
 export const sizeElements = [{ w: 1, h: 4 }, { w: 4, h: 1 }, { w: 2, h: 2 }, { w: 2, h: 3 }, { w: 3, h: 2 }];
 
-export const pushCurrnetFigure=(list,element)=>{
+export const pushSelectedGridSquares=(list,element)=>{
     if(list.length >=4){
         list.shift()
     }
     list.push(element)
     return list;
 }
-export const clearTemp = (grid)=>{
-    return grid.map((rows)=>{
-        return rows.map((col)=>{
-            col = col==1?0:col;
+export const clearSelected = (grid)=>{
+    return grid.map((row)=>{
+        return row.map((col)=>{
+            return col = col==1?0:col;
         })
     })
 }
 
 
-export const changeGridFigure = (grid,curentfigure)=>{
-    grid = clearTemp(grid)
-    console.log(grid,curentfigure)
-    curentfigure.map((element)=>{
+export const changeSelectedGrid = (grid,selectedGridSqueares)=>{
+    grid = clearSelected(grid)
+    selectedGridSqueares.map((element)=>{
         grid[element.row][element.col] = 1;
     })
+
     return grid;
 }
 
@@ -69,7 +69,7 @@ export const defaultState = () => {
     return {
         // Create an empty grid
         grid: gridDefault(),
-        currentFigure:[],
+        selectedGridSqueares:[],
         // Get a new random shape
         shape: randomShape(),
         // set rotation of the shape to 0
