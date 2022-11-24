@@ -1,24 +1,35 @@
+
+import React from 'react';
+import { Provider } from 'react-redux'
+import reducers from './reducers'
+import { createStore } from 'redux'
+
 import logo from './logo.svg';
 import './App.css';
 
+import GridBoard from './components/GridBoard'
+import NextBlock from './components/NextBlock'
+import ScoreBoard from './components/ScoreBoard'
+
+const store = createStore(reducers)
+
 function App() {
+ 
+//  console.log(store)
   return (
+    <Provider store={store}>
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1 className="App-title">ttrx</h1>
       </header>
+      <div className="game">
+      <NextBlock />
+      <NextBlock />
+      <GridBoard  />
+      <ScoreBoard />
+      </div>
     </div>
+   </Provider>
   );
 }
 
