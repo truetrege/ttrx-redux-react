@@ -17,6 +17,7 @@ export const gridDefault = () => {
 }
 // Random Shape
 export const randomShape = () => {
+    return 0;
     return random(1, shapes.length - 1)
 }
 
@@ -88,6 +89,7 @@ export const defaultState = () => {
         mouseDown:false,
         row: -1,
         col: -1,
+        moutionEnd:false,
         nextShape1: 1,
         nextShape2: randomShape(),
         isRunning: true,
@@ -161,19 +163,65 @@ const indexColapsedRows =(grid)=> {
     const rows = [];
     grid.forEach((row, index) => {
       if (row.every((col) => col === 2)) {
-        rows.push(index);
+        rows.push({ind:index,score:row.length});
       }
     });
     return rows;
 }
 
-export const chekColapseGrid = (grid)=>{
+export const getColapsedGrid = (grid)=>{
     const colapsedGrid = {
         rows:indexColapsedRows(grid),
         cols:indexColapsedRows(transpose(grid))
     }
-
-    
-    console.log(colapsedGrid)
     return colapsedGrid;
+};
+const colapseRows = (grid,rows)=>{
+    rows.sort((a, b) => b - a);
+    rows.forEach((element) => grid.splice(element.ind, 1));
+
+    const gridLength = grid[0].length;
+    const  rowLength = grid.length;
+
+    rows.forEach((element) => {
+        const newRow = [];
+        for (let i = 0; i < gridLength; i++) {
+          newRow.push(0);
+        }
+        if (element.ind <= rowLength / 2) {
+          grid.unshift(newRow);
+        } else {
+          grid.push(newRow);
+        }
+      });
+
+    return grid;
+};
+export const colapseGrid = (grid,colapsed)=>{
+    
+    grid = colapseRows(grid,colapsed.rows)
+    grid = transpose(colapseRows(transpose(grid),colapsed.cols))
+
+    return grid;
+};
+export const getColapsedScore = (colapsed)=>{
+    return colapsed.rows.reduce((score,element)=>score += element.score*element.score,0) + colapsed.cols.reduce((score,element)=>score += element.score*element.score,0)
+}
+export const checkInscribeShape =(grid,shape)=>{
+    // console.log(shapes[shape])
+    const gridLength = grid[0].length;
+    let figure = shapes[shape];
+    let figureLength = figure[0].length;
+
+    // alert(figure)
+    grid = grid.map((el) =>  el.join(''));
+    figure = figure.map((el) =>  el.join(''));
+    grid = grid.join('|');
+    figure =figure.map((el) => el.replace(/0/g, '.').replace(/1/g, '0'));
+
+    let regularSearchString = figure.join(
+        '.{' + (gridLength - figureLength + 1) + '}');
+    let indexSearchFigure = grid.search(regularSearchString);
+
+    return indexSearchFigure >= 0;
 }
