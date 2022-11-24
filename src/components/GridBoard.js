@@ -1,10 +1,12 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import GridSquare from './GridSquare'
 import { shapes } from '../utils'
+import { mouseUp } from '../actions'
 
 // Represents a 10 x 18 grid of grid squares
 export default function GridBoard(props) {
+  const dispatch = useDispatch()
     const game = useSelector((state) => state.game)
     const { grid, shape, rotation, x, y, isRunning, speed } = game
 
@@ -37,7 +39,7 @@ export default function GridBoard(props) {
   })
 
     return (
-        <div className='grid-board'>
+        <div className='grid-board' onMouseLeave={(e)=>dispatch(mouseUp())}>
             {gridSquares}
         </div>
     )

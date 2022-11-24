@@ -40,10 +40,12 @@ export const maxLengthElements = 4;
 export const sizeElements = [{ w: 1, h: 4 }, { w: 4, h: 1 }, { w: 2, h: 2 }, { w: 2, h: 3 }, { w: 3, h: 2 }];
 
 export const pushSelectedGridSquares=(list,element)=>{
-    if(list.length >=4){
-        list.shift()
+    if(!list.some(current=>current.row === element.row && current.col === element.col)){
+        if(list.length >=4){
+            list.shift()
+        }
+        list.push(element)
     }
-    list.push(element)
     return list;
 }
 export const clearSelected = (grid)=>{
@@ -60,7 +62,6 @@ export const changeSelectedGrid = (grid,selectedGridSqueares)=>{
     selectedGridSqueares.map((element)=>{
         grid[element.row][element.col] = 1;
     })
-
     return grid;
 }
 
@@ -70,6 +71,7 @@ export const defaultState = () => {
         // Create an empty grid
         grid: gridDefault(),
         selectedGridSqueares:[],
+        mouseDown:false,
         // Get a new random shape
         shape: randomShape(),
         // set rotation of the shape to 0
