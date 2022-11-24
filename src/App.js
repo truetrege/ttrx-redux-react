@@ -14,22 +14,24 @@ import ScoreBoard from './components/ScoreBoard'
 const store = createStore(reducers)
 
 function App() {
- 
-//  console.log(store)
+
+  //  console.log(store)
   return (
     <Provider store={store}>
-    <div className="App">
-      <header className="App-header">
-        <h1 className="App-title">ttrx</h1>
-      </header>
-      <div className="game">
-      <NextBlock />
-      <NextBlock />
-      <GridBoard  />
-      <ScoreBoard />
+      <div className="App">
+        <header className="App-header">
+          <h1 className="App-title">ttrx</h1>
+        </header>
+        <div className="game">
+          <div className='d-flex flex-column'>
+            <NextBlock shape="nextShape1" />
+            <NextBlock shape="nextShape2" />
+          </div>
+          <GridBoard />
+          <ScoreBoard />
+        </div>
       </div>
-    </div>
-   </Provider>
+    </Provider>
   );
 }
 

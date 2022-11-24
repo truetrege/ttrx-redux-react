@@ -6,11 +6,12 @@ import GridSquare from './GridSquare'
 
 // Draws the "next" block view showing the next block to drop
 export default function NextBlock(props) {
-    const nextShape = useSelector((state) => state.game.nextShape)
+
+    const nextShape = useSelector((state) => state.game[props.shape])
    
     const box = shapes[nextShape];
     const size = Array.isArray(box[0])?box[0].length:box.length;
-    console.log(box)
+    // console.log(box)
     const classBox = "next-block-"+size;
 
     // Map the block to the grid

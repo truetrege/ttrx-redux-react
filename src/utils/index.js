@@ -22,7 +22,7 @@ export const randomShape = () => {
 
 export const shapes = [
     /*1x*/
-    [[1, 1], [1, 1]], [1, 1, 1, 1], [[1], [1], [1], [1]],
+    [[1, 1], [1, 1]], [[1, 1, 1, 1]], [[1], [1], [1], [1]],
     /*2x3*/
     [[0, 1, 0], [1, 1, 1]], [[1, 1, 0], [0, 1, 1]], [[0, 1, 1], [1, 1, 0]],
     [[1,1,1], [0,1,0]], [[1, 0, 0], [1, 1, 1]], [[0, 0, 1], [1, 1, 1]],
@@ -39,13 +39,17 @@ export const shapes = [
 export const maxLengthElements = 4;
 export const sizeElements = [{ w: 1, h: 4 }, { w: 4, h: 1 }, { w: 2, h: 2 }, { w: 2, h: 3 }, { w: 3, h: 2 }];
 
+export const checkPushSelectedGridSquares = (list,element)=>{
+    return !list.some(current=>current.row === element.row && current.col === element.col);
+}
+
 export const pushSelectedGridSquares=(list,element)=>{
-    if(!list.some(current=>current.row === element.row && current.col === element.col)){
-        if(list.length >=4){
-            list.shift()
-        }
-        list.push(element)
+    
+    if(list.length >=4){
+        list.shift()
     }
+    list.push(element)
+    
     return list;
 }
 export const clearSelected = (grid)=>{
@@ -56,6 +60,13 @@ export const clearSelected = (grid)=>{
     })
 }
 
+export const checkSelectedGrid =(grid,element)=>{
+    if(grid[element.row][element.col] === 0){
+        return true;
+    }else{
+        return false;
+    }
+}
 
 export const changeSelectedGrid = (grid,selectedGridSqueares)=>{
     grid = clearSelected(grid)
@@ -63,6 +74,9 @@ export const changeSelectedGrid = (grid,selectedGridSqueares)=>{
         grid[element.row][element.col] = 1;
     })
     return grid;
+}
+export const fixSelectedGrid = (grid)=>{
+    return grid.map(rows=>rows.map(col=>col=col===1?2:col));
 }
 
 
@@ -72,22 +86,12 @@ export const defaultState = () => {
         grid: gridDefault(),
         selectedGridSqueares:[],
         mouseDown:false,
-        // Get a new random shape
-        shape: randomShape(),
-        // set rotation of the shape to 0
-        rotation: 0,
-        // set the 'x' position of the shape to 5 and y to -4, which puts the shape in the center of the grid, above the top
-        x: 5,
-        y: -4,
-        // set the index of the next shape to a new random shape
-        nextShape: randomShape(),
-        // Tell the game that it's currently running
+        row: -1,
+        col: -1,
+        nextShape1: 1,
+        nextShape2: randomShape(),
         isRunning: true,
-        // Set the score to 0
         score: 0,
-        // Set the default speed
-        speed: 1000,
-        // Game isn't over yet
         gameOver: false
     }
 }
@@ -125,7 +129,51 @@ export const checkSelectedShape=(selected,shape)=>{
         selectedShape[shape.row - selectedShapeMap.row.min][shape.col - selectedShapeMap.col.min] = 1;
     });
     
+    let equality = true;
+    for (let i = 0; i < selectedShapeMap.row.size; i++) {
+        if(selectedShape[i].join('') !== shape[i].join('')){
+            equality = false; 
+            break;
+        }
+    }
+    return equality; 
 
-    console.log(selectedShape,shape.length)
+}
+// getCountDeletedBox() {
+//     /**
+//      * TODO: ДУБЛИРУЕТСЯ В UPDATE ПОДУМАТЬ КАК ИСПРАВИТЬ!
+//      * */
+//     const deletedIndexes = {row: [], col: []};
+//     deletedIndexes.row = this.getIndexDeletedRows(this.matrix);
+//     deletedIndexes.col = this.getIndexDeletedRows(this.reverseMatrix());
 
+//     if (deletedIndexes.row.length === 0 && deletedIndexes.col.length === 0) {
+//       return 0;
+//     } else {
+//       return this.getScoreDeletedBox(deletedIndexes);
+//     }
+//   }
+
+const transpose =(matrix)=> {
+    return matrix[0].map((col, i) => matrix.map(row => row[i]));
+}
+const indexColapsedRows =(grid)=> {
+    const rows = [];
+    grid.forEach((row, index) => {
+      if (row.every((col) => col === 2)) {
+        rows.push(index);
+      }
+    });
+    return rows;
+}
+
+export const chekColapseGrid = (grid)=>{
+    const colapsedGrid = {
+        rows:indexColapsedRows(grid),
+        cols:indexColapsedRows(transpose(grid))
+    }
+
+    
+    console.log(colapsedGrid)
+    return colapsedGrid;
 }

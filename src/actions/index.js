@@ -5,7 +5,7 @@ export const GAME_OVER  = "GAME_OVER"   // The game is over
 export const RESTART    = "RESTART"     // Restart Game
 
 export const mouseMove = (row,col) => {
-    return { type: MOUSE_MOVE,row:row,col:col }
+    return { type: MOUSE_MOVE, row:row, col:col }
   }
   export const mouseDown =()=>{
     return { type: MOUSE_DOWN }
