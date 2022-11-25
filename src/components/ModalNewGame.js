@@ -3,27 +3,24 @@ import { useSelector, useDispatch } from 'react-redux'
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { restart } from '../actions'
+import { restart,newGame } from '../actions'
 
 
-export default function ModalGameOver(props) {
+export default function ModalNewGame(props) {
 
   const dispatch = useDispatch()
   const game = useSelector((state) => state.game)
-    let { grid,gameOver,score } = game
-    // gameOver = !gameOver
-    // const gameOver = useSelector((state) => !state.game.gameOver)
-    let classes='' 
-    
+    let { newGameModal } = game
+   
     let [show, setShow] = useState(false);
 
     const handleClose = () => dispatch(restart());
-    const handleShow = () => setShow(true);
+    const handleShow = () => dispatch(newGame(false));
 
     return (
       <>
     
-    <Modal show={gameOver}  {...props}
+    <Modal show={newGameModal}  {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -32,17 +29,19 @@ export default function ModalGameOver(props) {
       onHide={handleClose}>
             <div className="modal-header justify-content-center">
                 <div className="modal-title  h4">
-                    Игра окончена
+                    Начать новую игру
                 </div>
-                
+            
             </div>
           <Modal.Body>
-            <div>Вы набрали</div>
-            <div>{score}</div>
+            <div></div>
+            
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
-              заново
+              да
+            </Button> <Button variant="secondary" onClick={handleShow}>
+              нет
             </Button>
             
           </Modal.Footer>

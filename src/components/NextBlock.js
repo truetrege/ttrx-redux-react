@@ -28,6 +28,7 @@ export default function NextBlock(props) {
     })
 
     return (
+        
         <div className={classBox}>
             {grid}
         </div>

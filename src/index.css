@@ -90,7 +90,7 @@ code {
   display: grid;
   grid-template-columns: repeat(var(--cols), var(--tile-size));
   grid-gap: 0;
-  align-self: flex-start;
+  align-self: center;
 }
 .next-block-4 {
   display: grid;
@@ -150,20 +150,4 @@ code {
   align-self: flex-start;
   grid-area: l; /* Grid area l left column */
   background-color: #00ff00;
-}
-/* Grid Board */
-.grid-board {
-  display: grid;
- 
-  align-self: flex-start;
-  grid-area: c;
-  justify-content: center;
-  align-content: center;
-
-
-}
-/* score-board */
-.score-board {
-  grid-area: r;
-  background-color: #66ccff;
 }

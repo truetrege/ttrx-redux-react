@@ -6,11 +6,9 @@ import { createStore } from 'redux'
 
 import logo from './logo.svg';
 import './App.css';
+import Game from './components/Game';
 
-import GridBoard from './components/GridBoard'
-import NextBlock from './components/NextBlock'
-import ScoreBoard from './components/ScoreBoard'
-import ModalGameOver from './components/ModalGameOver';
+
 
 const store = createStore(reducers)
 
@@ -23,15 +21,7 @@ function App() {
         <header className="App-header">
           <h1 className="App-title">ttrx</h1>
         </header>
-        <div className="game">
-          <div className='d-flex flex-column'>
-            <NextBlock shape="nextShape1" />
-            <NextBlock shape="nextShape2" />
-          </div>
-          <GridBoard />
-          <ScoreBoard />
-          <ModalGameOver />
-        </div>
+        <Game />
       </div>
     </Provider>
   );

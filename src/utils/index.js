@@ -17,7 +17,7 @@ export const gridDefault = () => {
 }
 // Random Shape
 export const randomShape = () => {
-    return 0;
+    // return 0;
     return random(1, shapes.length - 1)
 }
 
@@ -82,6 +82,11 @@ export const fixSelectedGrid = (grid)=>{
 
 
 export const defaultState = () => {
+    const history = getHistry(); 
+    if(history){
+        return history;
+    }
+
     return {
         // Create an empty grid
         grid: gridDefault(),
@@ -90,11 +95,18 @@ export const defaultState = () => {
         row: -1,
         col: -1,
         moutionEnd:false,
-        nextShape1: 1,
+        nextShape1: randomShape(),
         nextShape2: randomShape(),
         isRunning: true,
         score: 0,
-        gameOver: false
+        gameOver: false,
+        newGameModal: false,
+        menuModal: false,
+        restart: false,
+        back: false,
+        previousState:null,
+        top:[],
+
     }
 }
 export const checkSelectedShape=(selected,shape)=>{
@@ -208,7 +220,6 @@ export const getColapsedScore = (colapsed)=>{
     return colapsed.rows.reduce((score,element)=>score += element.score*element.score,0) + colapsed.cols.reduce((score,element)=>score += element.score*element.score,0)
 }
 export const checkInscribeShape =(grid,shape)=>{
-    // console.log(shapes[shape])
     const gridLength = grid[0].length;
     let figure = shapes[shape];
     let figureLength = figure[0].length;
@@ -224,4 +235,20 @@ export const checkInscribeShape =(grid,shape)=>{
     let indexSearchFigure = grid.search(regularSearchString);
 
     return indexSearchFigure >= 0;
+}
+export const saveHistory = (state)=>{
+    localStorage.setItem('historyGame', JSON.stringify(state));
+}
+export const getHistry = () =>{
+
+    let value = localStorage.getItem('historyGame');
+    if (value) {
+      value = JSON.parse(value);
+    }
+    return value;
+}
+export const saveTop = (list,score)=>{
+    list.push(score).sort((a, b) => b - a);
+    list.pop();
+    return list;
 }

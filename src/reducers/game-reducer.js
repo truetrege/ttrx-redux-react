@@ -1,25 +1,23 @@
-import { checkInscribeShape, colapseGrid, defaultState, getColapsedGrid, getColapsedScore } from '../utils'
-import { pushSelectedGridSquares } from '../utils'
-import { checkPushSelectedGridSquares } from '../utils'
-import { changeSelectedGrid } from '../utils'
-import { checkSelectedShape } from '../utils'
-import { fixSelectedGrid } from '../utils'
-import { checkSelectedGrid } from '../utils'
-import { shapes } from '../utils'
-import { chekColapseGrid } from '../utils'
-import { randomShape } from '../utils'
 
 import {
-    MOUSE_MOVE, RESTART, GAME_OVER, MOUSE_DOWN, MOUSE_UP, CHECK_END_GAME
+    pushSelectedGridSquares, saveHistory, checkPushSelectedGridSquares,
+    changeSelectedGrid, checkSelectedShape, fixSelectedGrid, checkSelectedGrid, shapes,
+    randomShape, checkInscribeShape, clearSelected, colapseGrid, defaultState,
+    getColapsedGrid, getColapsedScore
+} from '../utils'
+
+import {
+    MOUSE_MOVE, RESTART, BACK, MOUSE_DOWN, MOUSE_UP, SETTINGS, NEW_GAME
 } from '../actions'
 
-
+const moutionGame = ()=>{
+    
+}
 
 const gameReducer = (state = defaultState(), action) => {
 
     switch (action.type) {
         case MOUSE_MOVE:
-
             if (state.mouseDown) {
                 if (state.row === action.row && state.col === action.col) {
                     return state;
@@ -27,7 +25,7 @@ const gameReducer = (state = defaultState(), action) => {
                 if (!checkSelectedGrid(state.grid, { row: action.row, col: action.col })) {
                     return state;
                 }
-                if(state.gameOver){
+                if (state.gameOver) {
                     return state;
                 }
                 //mb motionGame()=> все вынести туда??
@@ -50,34 +48,52 @@ const gameReducer = (state = defaultState(), action) => {
                 state.grid = changeSelectedGrid(state.grid, state.selectedGridSqueares);
 
 
-                if (checkSelectedShape(state.selectedGridSqueares, shapes[state.nextShape1])) {
+                const fitFirstShape = checkSelectedShape(state.selectedGridSqueares, shapes[state.nextShape1]);
+                const fitSecondShape = checkSelectedShape(state.selectedGridSqueares, shapes[state.nextShape2]);
+
+                
+
+                if (fitFirstShape || fitSecondShape) {
+                    const previousState = { ...state };
+
 
                     state.score += state.selectedGridSqueares.length;
                     state.grid = fixSelectedGrid(state.grid);
                     state.selectedGridSqueares = [];
-                    state.nextShape1 = randomShape();
+                    if(fitFirstShape && fitSecondShape){
+
+                        state.nextShape1 = randomShape();
+                    }else if(fitFirstShape){
+
+                        state.nextShape1 = randomShape();
+                    }else if(fitSecondShape){
+                        state.nextShape2 = randomShape();
+                    }
+                    const colapsed = getColapsedGrid(state.grid)
+                    if (colapsed.rows.length !== 0 || colapsed.cols.length !== 0) {
+                        state.grid = colapseGrid(state.grid, colapsed)
+                        state.score += getColapsedScore(colapsed)
+    
+    
+                    }
                     state.moutionEnd = true;
-                    let isGameOver = checkInscribeShape(state.grid,state.nextShape1) && checkInscribeShape(state.grid,state.nextShape2);
-                    state.gameOver = !isGameOver
-                }
-                if (checkSelectedShape(state.selectedGridSqueares, shapes[state.nextShape2])) {
-                    state.score += state.selectedGridSqueares.length;
-                    state.grid = fixSelectedGrid(state.grid);
-                    state.selectedGridSqueares = [];
-                    state.nextShape2 = randomShape();
-                    let isGameOver = checkInscribeShape(state.grid,state.nextShape1) && checkInscribeShape(state.grid,state.nextShape2);
-                    state.gameOver = !isGameOver
-                }
-                const colapsed = getColapsedGrid(state.grid)
-                if(colapsed.rows.length !== 0 || colapsed.cols.length !==0){
-                    state.grid = colapseGrid(state.grid,colapsed)
-                    state.score += getColapsedScore(colapsed) 
+                    state.mouseDown = false
+                    state.previousState = previousState;
 
-                   
+                    const isGameOver = checkInscribeShape(state.grid, state.nextShape1)
+                        || checkInscribeShape(state.grid, state.nextShape2);
+                    state.gameOver = !isGameOver
+                    if (isGameOver) {
+                        saveHistory(state)
+                    } else {
+
+                    }
                 }
 
-            
-              
+                
+
+
+
                 return {
                     ...state,
                     row: action.row,
@@ -87,18 +103,22 @@ const gameReducer = (state = defaultState(), action) => {
             return state;
         case MOUSE_DOWN:
             return { ...state, mouseDown: true }
-        case CHECK_END_GAME:
-            
-            return { ...state, moutionEnd: false }
+        case SETTINGS:
+
+            return { ...state, menuModal: action.cancel }
+        case NEW_GAME:
+
+            return { ...state, newGameModal: action.cancel }
         case MOUSE_UP:
 
             return { ...state, mouseDown: false }
-        case GAME_OVER:
-           
-            return state
+        case BACK:
+            const previousState = state.previousState;
+            previousState.grid = clearSelected(previousState.grid);
+            previousState.previousState = { ...state }
+            return { ...previousState, selectedGridSqueares: [], mouseDown: false }
         case RESTART:
-
-            return { ...state, gameOver: false }
+            return { ...defaultState(), gameOver: false }
         default:
             return state
     }

@@ -1,9 +1,10 @@
 export const MOUSE_MOVE  = "MOUSE_MOVE"   // Move piece down
 export const MOUSE_DOWN  = "MOUSE_DOWN"   // Move piece down
 export const MOUSE_UP  = "MOUSE_UP"   // Move piece down
-export const GAME_OVER  = "GAME_OVER"   // The game is over
-export const CHECK_END_GAME  = "CHECK_END_GAME"   // The game is over
+export const SETTINGS  = "SETTINGS"   // The game is over
 export const RESTART    = "RESTART"     // Restart Game
+export const NEW_GAME    = "NEW_GAME"     // Restart Game
+export const BACK    = "BACK"     // Restart Game
 
 export const mouseMove = (row,col) => {
     return { type: MOUSE_MOVE, row:row, col:col }
@@ -14,11 +15,16 @@ export const mouseMove = (row,col) => {
   export const mouseUp =()=>{
     return { type: MOUSE_UP }
   }
-export const checkEndGame =()=>{
-    return { type: CHECK_END_GAME }
+export const settings =(cancel=true)=>{
+    return { type: SETTINGS, cancel:cancel }
   }
 
-
+  export const back = () => {
+    return { type: BACK }
+  }
+  export const newGame = (cancel=true) => {
+    return { type: NEW_GAME, cancel:cancel}
+  }
 export const restart = () => {
     return { type: RESTART }
   }
