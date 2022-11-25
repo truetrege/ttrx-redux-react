@@ -1,6 +1,9 @@
 export const random = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
+export const themes = [
+    {name:'lego-1',colors:['brown no-shadow','red is-dragging','blue is-dragging']} 
+]; 
 
 export const gridDefault = () => {
     const rows = 11
@@ -107,7 +110,7 @@ export const defaultState = () => {
         back: false,
         previousState:null,
         top:getTop(),
-
+        theme:0
     }
 }
 export const checkSelectedShape=(selected,shape)=>{

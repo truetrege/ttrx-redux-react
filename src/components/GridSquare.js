@@ -7,7 +7,8 @@ import { mouseUp } from '../actions'
 export default function GridSquare(props) {
 
   const dispatch = useDispatch()
-  const classes = `grid-square brick color-${props.color}`
+  
+  const classes = `grid-square brick b-3x3 b-${props.color}`
  
   return <div className={classes} 
     onDragStart={(e)=>{e.preventDefault()}}

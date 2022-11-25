@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux'
 
-export default function ScoreBoard(props) {
+export default function Top(props) {
     const game = useSelector((state) => state.game)
     const { top } = game
 
-    console.log(top)
+    // console.log(top)
 
     const list = top.map((value) => {
     

@@ -5,40 +5,48 @@ import ScoreBoard from './ScoreBoard'
 import ModalGameOver from './ModalGameOver'
 import ModalNewGame from './ModalNewGame'
 import ModalSettings from './ModalSettings'
+import MobileHeader from './MobileHeader'
 import { useSelector, useDispatch } from 'react-redux'
 import { restart ,back, newGame, settings } from '../actions'
+import LeftContainer from './LeftContainer'
+import RightContainer from './RightContainer'
 
 
 
 export default function Game(props) {
 
-
+    const game = useSelector((state) => state.game)
+    const { score } = game
     const dispatch = useDispatch()
+    const windowInnerWidth = window.innerWidth
+    const windowInnerHeight = window.innerHeight
+
+    let header = <MobileHeader />;
+    let left = <LeftContainer />;
+    let right = <RightContainer />;
+
+    let classes = 'game-container'
+
+
+    if(windowInnerWidth >576){
+        header = <></>
+    }else{
+        left = <></>
+        right = <></>
+        classes += " container"
+    }
+
 
     return (
-        <>        
-        <div className="game-container">
-          <div className='left-container d-flex flex-column justify-content-space-between'>
-            <div>
-                <button className="btn btn-success" onClick={(e) => {dispatch(newGame());}}>новая игра </button>
-                <button className="btn btn-success" onClick={(e) => {dispatch(back());}}>назад</button>
-            </div>
-            <div>
-                <NextBlock shape="nextShape1" />
-                <NextBlock shape="nextShape2" />
-            </div>
-            <div>
-                <button className="btn btn-success" onClick={(e) => {
-                        dispatch(settings());
-                    }}>меню</button>
-            </div>
-          </div>
+        <>
+       
+        { header }
+        <div className={classes}>
+          { left }
           <div>
                 <GridBoard />
           </div>
-          <div class="right-container d-flex flex-column justify-content-space-between">
-                <ScoreBoard />  
-          </div>
+          { right }
         </div>
         <ModalGameOver />
         <ModalNewGame />

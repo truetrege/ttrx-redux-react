@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { restart,settings } from '../actions'
+import { restart,settings,newGame,back } from '../actions'
+import Top from './Top';
 
 
 export default function ModalSettings(props) {
@@ -35,7 +36,14 @@ export default function ModalSettings(props) {
 
             </div>
           <Modal.Body>
-            <div>ds,jh ntvs</div>
+
+            <div className='mobile-menu'>
+                <button className="btn btn-success" onClick={(e) => {dispatch(newGame());}}>новая игра </button>
+                <button className="btn btn-success" onClick={(e) => {dispatch(back());}}>назад</button>
+    
+              <Top />
+            </div>
+            <div>блок смены темы</div>
             
           </Modal.Body>
           <Modal.Footer>

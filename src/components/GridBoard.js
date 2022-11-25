@@ -1,14 +1,14 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import GridSquare from './GridSquare'
-import { shapes } from '../utils'
+import { themes } from '../utils'
 import { checkEndGame, mouseUp } from '../actions'
 
 // Represents a 10 x 18 grid of grid squares
 export default function GridBoard(props) {
   const dispatch = useDispatch()
     const game = useSelector((state) => state.game)
-    const { grid } = game
+    const { grid,theme } = game
 
     const gameOver = useSelector((state) => state.game.gameOver)
   
@@ -17,7 +17,9 @@ export default function GridBoard(props) {
     // map columns
     return rowArray.map((square, col) => {
       
-      let color = square
+      const colors = themes[theme].colors;
+
+      let color = colors[square]
       
       const k = row * grid[0].length + col;
 
