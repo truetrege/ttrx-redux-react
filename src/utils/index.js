@@ -37,8 +37,6 @@ export const shapes = [
     //['101','111'],
 
 ];
-export const maxLengthElements = 4;
-export const sizeElements = [{ w: 1, h: 4 }, { w: 4, h: 1 }, { w: 2, h: 2 }, { w: 2, h: 3 }, { w: 3, h: 2 }];
 
 export const checkPushSelectedGridSquares = (list,element)=>{
     return !list.some(current=>current.row === element.row && current.col === element.col);
@@ -80,13 +78,16 @@ export const fixSelectedGrid = (grid)=>{
     return grid.map(rows=>rows.map(col=>col=col===1?2:col));
 }
 
-
-export const defaultState = () => {
-    const history = getHistry(); 
+export const initState = ()=>{
+    const history = getHistory(); 
     if(history){
         return history;
     }
+    return defaultState();
+}
 
+export const defaultState = () => {
+    
     return {
         // Create an empty grid
         grid: gridDefault(),
@@ -105,7 +106,7 @@ export const defaultState = () => {
         restart: false,
         back: false,
         previousState:null,
-        top:[],
+        top:getTop(),
 
     }
 }
@@ -239,7 +240,7 @@ export const checkInscribeShape =(grid,shape)=>{
 export const saveHistory = (state)=>{
     localStorage.setItem('historyGame', JSON.stringify(state));
 }
-export const getHistry = () =>{
+export const getHistory = () =>{
 
     let value = localStorage.getItem('historyGame');
     if (value) {
@@ -248,7 +249,17 @@ export const getHistry = () =>{
     return value;
 }
 export const saveTop = (list,score)=>{
-    list.push(score).sort((a, b) => b - a);
-    list.pop();
+    list.push(score)
+    list.sort((a, b) => b - a);
+    if(list.length > 10 ){
+        list.pop();
+    }
     return list;
+}
+export const getTop = ()=>{
+    const history = getHistory();
+    if(history){
+        return history.top
+    }
+    return [];
 }

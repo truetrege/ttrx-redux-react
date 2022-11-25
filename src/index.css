@@ -42,7 +42,8 @@ code {
   --tile-size: 20px for example will set size of the grid squares. */
   --cols: 7;
   --rows: 11;
-  --tile-size: 50px;
+  --tile-size: 80px;
+  --tile-size-next: 40px;
   --border-width: 1px;
 }
 /* Colors */
@@ -86,6 +87,13 @@ code {
   /* pointer-events: none; */
 
 }
+
+.next-block-container .grid-square {
+  width: var(--tile-size-next);
+  height: var(--tile-size-next);
+
+}
+
 .grid-board {
   display: grid;
   grid-template-columns: repeat(var(--cols), var(--tile-size));
@@ -94,22 +102,22 @@ code {
 }
 .next-block-4 {
   display: grid;
-  grid-template-columns: repeat(4, var(--tile-size));
+  grid-template-columns: repeat(4, var(--tile-size-next));
   align-self: flex-start;
 }
 .next-block-3 {
   display: grid;
-  grid-template-columns: repeat(3, var(--tile-size));
+  grid-template-columns: repeat(3, var(--tile-size-next));
   align-self: flex-start;
 }
 .next-block-2 {
   display: grid;
-  grid-template-columns: repeat(2, var(--tile-size));
+  grid-template-columns: repeat(2, var(--tile-size-next));
   align-self: flex-start;
 }
 .next-block-1 {
   display: grid;
-  grid-template-columns: repeat(1, var(--tile-size));
+  grid-template-columns: repeat(1, var(--tile-size-next));
   align-self: flex-start;
 }
 
@@ -136,7 +144,7 @@ code {
  width: 100%;
  height: 100px;
 }
-.game{
+.game-container{
   display: flex;
   height: 100%;
   justify-content: space-between;

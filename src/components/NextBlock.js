@@ -12,7 +12,7 @@ export default function NextBlock(props) {
     const box = shapes[nextShape];
     const size = Array.isArray(box[0])?box[0].length:box.length;
     // console.log(box)
-    const classBox = "next-block-"+size;
+    const classBox = "next-block-container next-block-"+size;
 
     // Map the block to the grid
     const grid = box.map((rowArray, row) => {

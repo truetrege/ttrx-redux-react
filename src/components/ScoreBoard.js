@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux'
+import Top from './Top'
 
 export default function ScoreBoard(props) {
     const game = useSelector((state) => state.game)
@@ -7,7 +8,7 @@ export default function ScoreBoard(props) {
     return (
         <div className="score-board">
             <div>Score:{ score }</div>
-            <div> TOP 10</div>
+            <Top />
         </div>
     )
 }
