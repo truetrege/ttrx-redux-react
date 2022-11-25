@@ -8,13 +8,15 @@ export default function ScoreBoard(props) {
 
     const list = top.map((value) => {
     
-        return <li>{value}</li>
+        return <li className=''>{value}</li>
     })
 
     return (
         <div className="top10">
-            <div> TOP 10</div>
-            <ol>{list}</ol>
+            <div className="mb-5"> TOP 10</div>
+            <div>
+                <ol className="top-ol list-group">{list}</ol>
+            </div>
         </div>
     )
 }

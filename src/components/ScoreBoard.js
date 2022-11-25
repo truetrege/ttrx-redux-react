@@ -6,9 +6,15 @@ export default function ScoreBoard(props) {
     const { score } = game
 
     return (
+        <>
         <div className="score-board">
-            <div>Score:{ score }</div>
-            <Top />
+            <div>Счет:</div>
+            <div>
+            { score }
+            </div>
         </div>
+            <Top />
+        </>
+        
     )
 }

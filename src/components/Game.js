@@ -18,24 +18,25 @@ export default function Game(props) {
     return (
         <>        
         <div className="game-container">
-          <div className='col-2 d-flex flex-column'>
-                <button className="btn btn-success" onClick={(e) => {
-                dispatch(newGame());
-                }}>новая игра </button>
-                <button className="btn btn-success" onClick={(e) => {
-                    dispatch(back());
-
-                }}>назад</button>
-                <button className="btn btn-success" onClick={(e) => {
-                    dispatch(settings());
-                }}>меню</button>
+          <div className='left-container d-flex flex-column justify-content-space-between'>
+            <div>
+                <button className="btn btn-success" onClick={(e) => {dispatch(newGame());}}>новая игра </button>
+                <button className="btn btn-success" onClick={(e) => {dispatch(back());}}>назад</button>
+            </div>
+            <div>
                 <NextBlock shape="nextShape1" />
                 <NextBlock shape="nextShape2" />
+            </div>
+            <div>
+                <button className="btn btn-success" onClick={(e) => {
+                        dispatch(settings());
+                    }}>меню</button>
+            </div>
           </div>
           <div>
                 <GridBoard />
           </div>
-          <div class="col-2">
+          <div class="right-container d-flex flex-column justify-content-space-between">
                 <ScoreBoard />  
           </div>
         </div>
