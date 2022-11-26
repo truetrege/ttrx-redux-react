@@ -2,7 +2,10 @@ export const random = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
 export const themes = [
-    {name:'lego-1',colors:['brown no-shadow','red is-dragging','blue is-dragging']} 
+    {name:'lego-brb',colors:['brown no-shadow','red is-dragging','blue is-dragging']},
+    {name:'lego-btg',colors:['blue-grey no-shadow','teal is-dragging','green is-dragging']},
+    {name:'lego-gpd',colors:['grey no-shadow','purple is-dragging','deep-purple is-dragging']},
+    {name:'lego-gpd',colors:['grey no-shadow','red is-dragging','indigo is-dragging']},
 ]; 
 
 export const gridDefault = () => {
@@ -193,9 +196,11 @@ export const getColapsedGrid = (grid)=>{
     return colapsedGrid;
 };
 const colapseRows = (grid,rows)=>{
-    rows.sort((a, b) => b - a);
-    rows.forEach((element) => grid.splice(element.ind, 1));
 
+    // console.log(rows)
+    rows.sort((a, b) => b.ind - a.ind);
+    rows.forEach((element) => grid.splice(element.ind, 1));
+// console.log(rows,grid)
     const gridLength = grid[0].length;
     const  rowLength = grid.length;
 

@@ -6,9 +6,9 @@ export default function Top(props) {
 
     // console.log(top)
 
-    const list = top.map((value) => {
-    
-        return <li className=''>{value}</li>
+    const list = top.map((value,ind) => {
+        const key = value*ind;
+        return <li className='' key={key}>{value}</li>
     })
 
     return (

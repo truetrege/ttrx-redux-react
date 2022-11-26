@@ -3,9 +3,9 @@
 
 $brick-peg-size: 12px;
 $brick-wall-thickness: 5px;
-
-
 $brick-square:  $brick-peg-size + $brick-wall-thickness * 2;
+
+
 $cols:7;
 $rows:11;
 $curent-size-x : 3;
@@ -18,8 +18,16 @@ $curent-square-width-next:$curent-square-width/2;
 
 $brick-square-next:$brick-square/2;
 
+$SCALE: 0.85;
+
+$brick-peg-size-min: $brick-peg-size*$SCALE;
+$brick-wall-thickness-min: $brick-wall-thickness*$SCALE;
+$brick-square-min:  $brick-peg-size-min + $brick-wall-thickness-min * 2;
 
 
+$curent-square-width-min:$curent-square-width*$SCALE;
+$brick-square-next-min:$brick-square-min/2;
+$curent-square-width-next-min:$curent-square-width-min/2;
 
 body * {
     box-sizing: border-box;
@@ -67,7 +75,7 @@ body * {
 }
 .next-block-container
 .brick {
-    color: #f63;
+    // color: #f63;
     background-color: currentColor;
     padding: $brick-wall-thickness/2;
     min-width: $brick-square/2;
@@ -125,6 +133,79 @@ $brick-colors: (
        
     }
 }
+@media (max-width: 575.98px) {
+    .brick {
+        // color: #f63;
+        background-color: currentColor;
+        padding: $brick-wall-thickness-min;
+        min-width: $brick-square-min;
+        min-height: $brick-square-min;
+        box-shadow: inset -1px -1px 0 rgba(0,0,0,.2), inset 1px 1px 0 rgba(#fff, .2);
+        background-image: radial-gradient(currentColor $brick-peg-size-min/2, transparent $brick-peg-size-min/2 + 1px),
+                            radial-gradient(rgba(#fff, .6) $brick-peg-size-min/2, transparent $brick-peg-size-min/2 + 1px),
+                          radial-gradient(rgba(#000, .2) $brick-peg-size-min/2, transparent $brick-peg-size-min/2 + $brick-wall-thickness-min/2),
+                        radial-gradient(rgba(#000, .2) $brick-peg-size-min/2, transparent $brick-peg-size-min/2 + $brick-wall-thickness-min/2);
+        background-size: $brick-square-min $brick-square-min;
+        background-position: 0px 0px, -.5px -.5px, 0px 0px, $brick-wall-thickness-min/2 $brick-wall-thickness-min/2;
+        background-repeat: repeat;
+    }
+    .next-block-container
+.brick {
+    // color: #f63;
+    background-color: currentColor;
+    padding: $brick-wall-thickness-min/2;
+    min-width: $brick-square-min/2;
+    min-height: $brick-square-min/2;
+    box-shadow: inset -1px -1px 0 rgba(0,0,0,.2), inset 1px 1px 0 rgba(#fff, .2);
+    background-image: radial-gradient(currentColor $brick-peg-size-min/2/2, transparent $brick-peg-size-min/2/2 + 1px),
+                        radial-gradient(rgba(#fff, .6) $brick-peg-size-min/2/2, transparent $brick-peg-size-min/2/2 + 1px),
+                      radial-gradient(rgba(#000, .2) $brick-peg-size-min/2/2, transparent $brick-peg-size-min/2/2 + $brick-wall-thickness-min/2/2),
+                    radial-gradient(rgba(#000, .2) $brick-peg-size-min/2/2, transparent $brick-peg-size-min/2/2 + $brick-wall-thickness-min/2/2);
+    background-size: $brick-square-min/2 $brick-square-min/2;
+    background-position: 0px 0px, -.5px -.5px, 0px 0px, $brick-wall-thickness-min/2/2 $brick-wall-thickness-min/2/2;
+    background-repeat: repeat;
+}
+    .grid-board {
+        display: grid;
+        grid-template-columns: repeat($cols,$curent-square-width-min) !important;
+        grid-gap: 0;
+        align-self: center;
+      }
+      .next-block-4 {
+        display: grid;
+        grid-template-columns: repeat(4, $curent-square-width-next-min) !important;
+        align-self: flex-start;
+      }
+      .next-block-3 {
+        display: grid;
+        grid-template-columns: repeat(3, $curent-square-width-next-min) !important;
+        align-self: flex-start;
+      }
+      .next-block-2 {
+        display: grid;
+        grid-template-columns: repeat(2, $curent-square-width-next-min) !important;
+        align-self: flex-start;
+      }
+      .next-block-1 {
+        display: grid;
+        grid-template-columns: repeat(1, $curent-square-width-next-min) !important;
+        align-self: flex-start;
+      }
+    @for $x from 1 through 12 {
+        @for $y from 1 through 12 {
+            .b-#{$x}x#{$y} {
+                width: $brick-peg-size-min * $x + (($brick-wall-thickness-min*2) * $x);
+                height: $brick-peg-size-min * $y + (($brick-wall-thickness-min*2) * $y);
+            }
+            
+            .next-block-container .b-#{$x}x#{$y} {
+                width: ($brick-peg-size-min * $x + (($brick-wall-thickness-min*2) * $x) )/2;
+                height: ($brick-peg-size-min * $y + (($brick-wall-thickness-min*2) * $y))/2;
+            }
+        
+        }
+    }
+}
 
   
 .grid-board {
@@ -172,7 +253,7 @@ $grid-breakpoints: (
 @media (max-width: 991.98px) { 
     // .left-container,.right-container{display: none !important;}
     .grid-board{
-        transform: scale(0.8);
+        // transform: scale(0.8);
     }
  }
 
@@ -186,7 +267,7 @@ $grid-breakpoints: (
 @media (max-width: 575.98px) {
     .left-container,.right-container{display: none !important;}
     .grid-board{
-        transform: scale(0.97);
+        // transform: scale(0.80);
     }
     .App-header {
         width: 100%;
@@ -194,13 +275,13 @@ $grid-breakpoints: (
         display: flex !important;
     }
     .next-block-1,.next-block-2,.next-block-3,.next-block-4{
-        transform: scale(.7);
+        // transform: scale(.7);
     }
     .next-block-3{
         margin-top: 20px;
     } 
     .next-block-1{
-        transform: scale(.6);
+        // transform: scale(.6);
         margin-top: -18px;
     }
     .next-block-header{
@@ -208,6 +289,9 @@ $grid-breakpoints: (
     justify-content: flex-start;
     height: 100px;
     width: 200px;
+    }
+    .next-block-header .next-block-container{
+        margin-right: 1rem;;
     }
     
 }

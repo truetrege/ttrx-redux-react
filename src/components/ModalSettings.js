@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { restart,settings,newGame,back } from '../actions'
 import Top from './Top';
+import Themes from './Themes';
 
 
 export default function ModalSettings(props) {
@@ -41,9 +42,11 @@ export default function ModalSettings(props) {
                 <button className="btn btn-success" onClick={(e) => {dispatch(newGame());}}>новая игра </button>
                 <button className="btn btn-success" onClick={(e) => {dispatch(back());}}>назад</button>
     
-              <Top />
+              <Top key='213' />
             </div>
-            <div>блок смены темы</div>
+            <div>
+              <Themes />
+            </div>
             
           </Modal.Body>
           <Modal.Footer>

@@ -14,7 +14,6 @@ import Game from './components/Game';
 const store = createStore(reducers)
 
 function App() {
-
   //  console.log(store)
   return (
     <Provider store={store}>

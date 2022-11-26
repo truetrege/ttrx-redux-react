@@ -33,7 +33,7 @@ export default function Game(props) {
     }else{
         left = <></>
         right = <></>
-        classes += " container"
+        classes += " container justify-content-center"
     }
 
 

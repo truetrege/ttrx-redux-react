@@ -33,7 +33,10 @@ export default function GridBoard(props) {
   })
 
     return (
-        <div className='grid-board'  onMouseLeave={(e)=>dispatch(mouseUp())}>
+        <div className='grid-board'  
+        // onTouchMove={(e)=>{console.log('-',e);}}
+        // onTouchMoveCapture={(e)=>{console.log('+',e);}}
+        onMouseLeave={(e)=>dispatch(mouseUp())}>
             {gridSquares}
         </div>
     )

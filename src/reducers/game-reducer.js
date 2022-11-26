@@ -7,7 +7,7 @@ import {
 } from '../utils'
 
 import {
-    MOUSE_MOVE, RESTART, BACK, MOUSE_DOWN, MOUSE_UP, SETTINGS, NEW_GAME
+    MOUSE_MOVE, RESTART, BACK, MOUSE_DOWN, MOUSE_UP, SETTINGS, NEW_GAME,CHANGE_THEME
 } from '../actions'
 
 
@@ -48,6 +48,9 @@ const gameReducer = (state = initState(), action) => {
         case NEW_GAME:
 
             return { ...state, newGameModal: action.cancel }
+        case CHANGE_THEME:
+
+            return { ...state, theme: action.theme }
         case MOUSE_UP:
 
             return { ...state, mouseDown: false }
@@ -62,7 +65,7 @@ const gameReducer = (state = initState(), action) => {
             const newState = defaultState();
             saveHistory(newState)
             newState.top = top;
-            console.log(top,newState,state)
+            // console.log(top,newState,state)
 
 
             return { ...newState, gameOver: false }
@@ -99,6 +102,7 @@ const moutionGame = (state, action) => {
         }
         const colapsed = getColapsedGrid(state.grid)
         if (colapsed.rows.length !== 0 || colapsed.cols.length !== 0) {
+
             state.grid = colapseGrid(state.grid, colapsed)
             state.score += getColapsedScore(colapsed)
 

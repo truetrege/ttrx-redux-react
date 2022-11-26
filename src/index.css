@@ -68,6 +68,8 @@ code {
   align-items: center;
   background-color: #B0BEC5;
   box-shadow: 0 2px 5px rgb(0 0 0 / 70%);
+  touch-action: none;
+
 }
 /* Next Block */
 
