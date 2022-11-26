@@ -5,10 +5,14 @@ export const SETTINGS = "SETTINGS"   // The game is over
 export const RESTART = "RESTART"     // Restart Game
 export const NEW_GAME = "NEW_GAME"     // Restart Game
 export const BACK = "BACK"     // Restart Game
+export const CHECK_COLLAPSE = "CHECK_COLLAPSE"     // Restart Game
 export const CHANGE_THEME = "CHANGE_THEME"     // Restart Game
 
 export const mouseMove = (row, col) => {
   return { type: MOUSE_MOVE, row: row, col: col }
+}
+export const checkCollapse = () => {
+  return { type: CHECK_COLLAPSE}
 }
 export const changeTheme =(theme) => {
   return { type: CHANGE_THEME, theme: theme } 

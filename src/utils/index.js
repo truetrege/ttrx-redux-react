@@ -113,6 +113,7 @@ export const defaultState = () => {
         back: false,
         previousState:null,
         top:getTop(),
+        fixSquares:false,
         theme:0
     }
 }

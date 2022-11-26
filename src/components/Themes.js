@@ -18,7 +18,7 @@ export default function Themes(props) {
             const selected = true;
 
         }
-        return <option className='' value ={value} selected={selected} key={key} >{name}</option>
+        return <option className='' value ={value} key={key} >{name}</option>
     })
 
     return (

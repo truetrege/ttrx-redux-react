@@ -33,7 +33,7 @@ export default function ModalSettings(props) {
                 <div className="modal-title  h4">
                     Настройки
                 </div>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={handleShow}></button>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={handleShow}></button>
 
             </div>
           <Modal.Body>
