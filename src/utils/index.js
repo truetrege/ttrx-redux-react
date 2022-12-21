@@ -24,7 +24,7 @@ export const gridDefault = () => {
 // Random Shape
 export const randomShape = () => {
     // return 0;
-    return random(1, shapes.length - 1)
+    return random(0, shapes.length - 1)
 }
 
 export const shapes = [
