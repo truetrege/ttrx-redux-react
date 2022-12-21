@@ -2,10 +2,10 @@ export const random = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
 export const themes = [
-    {name:'lego-brb',colors:['brown no-shadow','red is-dragging','blue is-dragging']},
+    {name:'lego-brb',colors:['brown no-shadow','red is-dragging','blue is-dragging swing']},
     {name:'lego-btg',colors:['blue-grey no-shadow','teal is-dragging','green is-dragging']},
     {name:'lego-gpd',colors:['grey no-shadow','purple is-dragging','deep-purple is-dragging']},
-    {name:'lego-gpd',colors:['grey no-shadow','red is-dragging','indigo is-dragging']},
+    {name:'lego-gpd',colors:['grey no-shadow','red is-dragging','indigo is-dragging swing']},
 ]; 
 
 export const gridDefault = () => {
@@ -24,10 +24,11 @@ export const gridDefault = () => {
 // Random Shape
 export const randomShape = () => {
     // return 0;
-    return random(0, shapes.length - 1)
+    return random(1, shapes.length - 1)
 }
 
 export const shapes = [
+    [[1, 1], [1, 1]],
     /*1x*/
     [[1, 1], [1, 1]], [[1, 1, 1, 1]], [[1], [1], [1], [1]],
     /*2x3*/
@@ -114,7 +115,7 @@ export const defaultState = () => {
         previousState:null,
         top:getTop(),
         fixSquares:false,
-        theme:0
+        theme:getTheme()
     }
 }
 export const checkSelectedShape=(selected,shape)=>{
@@ -230,6 +231,8 @@ export const getColapsedScore = (colapsed)=>{
     return colapsed.rows.reduce((score,element)=>score += element.score*element.score,0) + colapsed.cols.reduce((score,element)=>score += element.score*element.score,0)
 }
 export const checkInscribeShape =(grid,shape)=>{
+
+    grid = clearSelected(grid);
     const gridLength = grid[0].length;
     let figure = shapes[shape];
     let figureLength = figure[0].length;
@@ -271,4 +274,11 @@ export const getTop = ()=>{
         return history.top
     }
     return [];
+}
+export const getTheme = ()=>{
+    const history = getHistory();
+    if(history){
+        return history.theme
+    }
+    return 0;
 }

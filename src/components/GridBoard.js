@@ -14,12 +14,17 @@ export default function GridBoard(props) {
   
 
   const gridSquares = grid.map((rowArray, row) => {
+
+    let full = rowArray.every((current)=>current === 2);
     // map columns
     return rowArray.map((square, col) => {
       
       const colors = themes[theme].colors;
 
       let color = colors[square]
+      if(full){
+        color += 'full';
+      }
       
       const k = row * grid[0].length + col;
 

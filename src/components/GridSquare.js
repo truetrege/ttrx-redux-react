@@ -19,7 +19,10 @@ export default function GridSquare(props) {
     onTouchStart={(e)=>{dispatch(mouseDown());dispatch(mouseMove(props.row,props.col));}}
     onTouchEnd={(e)=>{  
        dispatch(mouseUp());
-       dispatch(checkCollapse())
+       setTimeout(() => {
+        dispatch(mouseUp());
+        dispatch(checkCollapse())
+      }, 300);
 
       }}
     onTouchMove={(e)=>{
@@ -38,10 +41,19 @@ export default function GridSquare(props) {
       dispatch(mouseMove(parseInt(el.attributes.row.nodeValue),parseInt(el.attributes.col.nodeValue)))}
     } 
     onMouseMove={(e)=>dispatch(mouseMove(props.row,props.col))} 
-    onMouseDown={(e)=>{dispatch(mouseDown());dispatch(mouseMove(props.row,props.col));}}
+    onMouseDown={(e)=>{
+      
+      dispatch(mouseDown());
+      dispatch(mouseMove(props.row,props.col));
+    }
+    }
     onMouseUp={(e)=>{
       dispatch(mouseUp());
-      dispatch(checkCollapse())
+      setTimeout(() => {
+        dispatch(mouseUp());
+        dispatch(checkCollapse())
+      }, 300);
+      // dispatch(checkCollapse())
       
       
     
