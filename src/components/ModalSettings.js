@@ -45,17 +45,18 @@ export default function ModalSettings(props) {
     
               <Top key={1234} pp='123' />
             </div>
-            <div>
-              <div className="text-center">смена темы</div>
-              <Themes />
-            </div>
-           
+            
             
             
           </div>
-          <Modal.Footer>
-        
-          </Modal.Footer>
+          <div className="modal-footer justify-content-center">
+          
+              <div className="text-center">смена темы</div>
+              
+            
+            <Themes />
+            </div>
+         
         </Modal>
       </>
     );

@@ -13,17 +13,19 @@ export default function Themes(props) {
         const key = ind;
         const name = element.name;
         const value = ind;
-        let selected = false;
+        
 
-        if(theme == ind){
-            const selected = true;
+        // let selected = false;
+        // if(theme == ind){
+        //     selected = true;
 
-        }
-        return <option className='' value ={value} key={key} >{name}</option>
+        // }
+        return <option className=''  value ={value} key={key} >{name}</option>
     })
 
     return (
         <select className='form-select custom-select'
+        value={theme}
         onChange={(e)=>{
             dispatch(changeTheme(e.target.value));
             dispatch(settings(false))

@@ -2,10 +2,26 @@ export const random = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
 export const themes = [
-    {name:'lego-brb',colors:['brown no-shadow','red is-dragging','blue is-dragging swing']},
-    {name:'lego-btg',colors:['blue-grey no-shadow','teal is-dragging','green is-dragging']},
-    {name:'lego-gpd',colors:['grey no-shadow','purple is-dragging','deep-purple is-dragging']},
-    {name:'lego-gpd',colors:['grey no-shadow','red is-dragging','indigo is-dragging swing']},
+    {name:'синяя',colors:['brown ','red is-dragging swingy','blue  swing']},
+    {name:'синяя-2уровня',colors:['brown no-shadow','red is-dragging swingy','blue is-dragging  swing']},
+    
+    {name:'зеленая',colors:['light-blue ','light-green is-dragging swing','green  is-dragging swing']},
+    {name:'фиолетовая',colors:['grey ','purple is-dragging swingy','deep-purple swing']},
+    
+    {name:'синяя2',colors:['grey no-shadow','red is-dragging','indigo is-dragging swing']},
+    {name:'синяя2 - закр.',colors:['grey ','red is-dragging swingy','indigo  swingxy brick-closed']},
+    {name:'серая - закр.',colors:['grey ','red is-dragging swingy','grey  swingxy brick-closed']},
+    
+    {name:'тем.синяя - закр.',colors:['indigo ','blue is-dragging brick-closed swingy','indigo  swingxy brick-closed']},
+    {name:'желтая',colors:['cyan no-shadow','yellow is-dragging','amber is-dragging swing']},
+    {name:'розовая',colors:['pink no-shadow','yellow is-dragging','amber is-dragging swing']},
+    
+    {name:'коричнивая',colors:['grey ','indigo is-dragging swingy','brown  swingxy ']},
+    {name:'коричнивая2ур',colors:['grey ','indigo is-dragging swingy','brown is-dragging swingxy ']},
+    {name:'коричнивая - закр.',colors:['grey ','indigo is-dragging swingy','brown  swingxy brick-closed']},
+
+    {name:'черно-желтая',colors:['brown ','yellow is-dragging swingy','black is-dragging swingxy']},
+    {name:'черно-желтая-закр',colors:['brown ','yellow is-dragging swingy','black is-dragging swingxy brick-closed']},
 ]; 
 
 export const gridDefault = () => {

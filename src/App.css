@@ -37,16 +37,16 @@
   }
 }
 
-.modal[data-modal-color] {
+.modal-dialog[data-modal-color] {
   color: #fff;
 }
 
-.modal .modal-header {
+.modal-dialog .modal-header {
   padding: 23px 26px;
   border-bottom: 1px solid transparent;
 }
 
-.modal .modal-content {
+.modal-dialog .modal-content {
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.31);
   border-radius: 3px;
   border: 0;
@@ -58,19 +58,19 @@
   border-top: 1px solid transparent;
 }
 
-.modal[data-modal-color] .modal-footer {
+.modal-dialog[data-modal-color] .modal-footer {
   background: rgba(0, 0, 0, 0.1);
 }
 
-.modal[data-modal-color] .modal-footer .btn-link {
+.modal-dialog[data-modal-color] .modal-footer .btn-link {
   font-weight: 400;
 }
 
-.modal[data-modal-color] .modal-title, .modal[data-modal-color] .modal-footer .btn-link {
+.modal-dialog[data-modal-color] .modal-title, .modal-dialog[data-modal-color] .modal-footer .btn-link {
   color: #fff;
 }
 
-.modal .modal-footer .btn-link {
+.modal-dialog .modal-footer .btn-link {
   font-size: 14px;
   color: #000;
   font-weight: 500;
@@ -82,12 +82,12 @@
   border-radius: 2px;
 }
 
-.modal[data-modal-color] .modal-footer .btn-link:hover {
+.modal-dialog[data-modal-color]  .btn-link:hover {
   background-color: rgba(0, 0, 0, 0.1);
   text-decoration: none;
 }
 
-.modal[data-modal-color] .modal-footer .btn-link {
+.modal-dialog[data-modal-color]  .btn-link {
   font-weight: 400;
 }
 
