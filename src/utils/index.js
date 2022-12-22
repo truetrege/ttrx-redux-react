@@ -99,7 +99,11 @@ export const themes = [
     {name:'черно-желтая',colors:['brown ','yellow is-dragging swingy','black is-dragging swingxy']},
     {name:'черно-желтая-закр',colors:['brown ','yellow is-dragging swingy','black is-dragging swingxy brick-closed']},
 
-    {name:'анимация',
+    {name:'случайная 1',
+        random:true,
+        colors:generateTheme(),
+    },
+    {name:'случайная 2',
         random:true,
         colors:generateTheme(),
     },
