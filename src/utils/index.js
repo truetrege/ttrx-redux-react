@@ -2,14 +2,17 @@ export const random = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
 export const themes = [
-    {name:'синяя',colors:['brown ','red is-dragging swingy','blue  swing']},
-    {name:'синяя-2уровня',colors:['brown no-shadow','red is-dragging swingy','blue is-dragging  swing']},
+    {name:'синяя',colors:['brown swingxy','red is-dragging swingyx','blue swing']},
+    {name:'синяя-2уровня',colors:['brown no-shadow swingxy','red is-dragging swingyx','blue is-dragging  swing']},
     
     {name:'зеленая',colors:['light-blue ','light-green is-dragging swing','green  is-dragging swing']},
     {name:'фиолетовая',colors:['grey ','purple is-dragging swingy','deep-purple swing']},
     
-    {name:'синяя2',colors:['grey no-shadow','red is-dragging','indigo is-dragging swing']},
-    {name:'синяя2 - закр.',colors:['grey ','red is-dragging swingy','indigo  swingxy brick-closed']},
+    {name:'тсиняя',colors:['grey swingxy','red is-dragging swingyx','indigo is-dragging swing swingxy']},
+    {name:'тсиняя2',colors:['grey no-shadow swingyx','red is-dragging swingxy','indigo is-dragging swingyx']},
+    {name:'синяя2закр.',colors:['grey swingxy','red is-dragging swingyx','indigo  swingxy brick-closed']},
+    
+    
     {name:'серая - закр.',colors:['grey ','red is-dragging swingy','grey  swingxy brick-closed']},
     
     {name:'тем.синяя - закр.',colors:['indigo ','blue is-dragging brick-closed swingy','indigo  swingxy brick-closed']},

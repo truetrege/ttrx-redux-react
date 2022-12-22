@@ -575,6 +575,83 @@ $grid-breakpoints: (
     transform: translateX(0);
   }
 }
+@-webkit-keyframes swingyx {
+  15% {
+    -webkit-transform: translateX(-4px);
+    transform: translateX(-4px);
+    -webkit-transform: translateY(-4px);
+    transform: translateY(-4px);
+  }
+  30% {
+    -webkit-transform: translateX(4px);
+    transform: translateX(4px);
+       -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+  }
+  40% {
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+        -webkit-transform: translateX(-2px);
+    transform: translateX(-2px);
+  }
+  50% {
+    -webkit-transform: translateY(2px);
+    transform: translateY(2px);
+     -webkit-transform: translateX(2px);
+    transform: translateX(2px);
+  }
+  65% {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+     -webkit-transform: translateX(1px);
+    transform: translateX(1px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+       -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+
+@keyframes swingyx {
+  15% {
+    -webkit-transform: translateX(-4px);
+    transform: translateX(-4px);
+    -webkit-transform: translateY(-4px);
+    transform: translateY(-4px);
+  }
+  30% {
+    -webkit-transform: translateX(4px);
+    transform: translateX(4px);
+       -webkit-transform: translateY(4px);
+    transform: translateY(4px);
+  }
+  40% {
+    -webkit-transform: translateY(-2px);
+    transform: translateY(-2px);
+        -webkit-transform: translateX(-2px);
+    transform: translateX(-2px);
+  }
+  50% {
+    -webkit-transform: translateY(2px);
+    transform: translateY(2px);
+     -webkit-transform: translateX(2px);
+    transform: translateX(2px);
+  }
+  65% {
+    -webkit-transform: translateY(1px);
+    transform: translateY(1px);
+     -webkit-transform: translateX(1px);
+    transform: translateX(1px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+       -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
 
 
 .swing {
@@ -589,9 +666,23 @@ $grid-breakpoints: (
    -webkit-animation-iteration-count: 1;
    animation-iteration-count: 1;
 }
-.full,.swingxy{
+.swingyx{
+  -webkit-animation: swingyx 0.3s ease;
+  animation: swingyx 0.3s ease;
+   -webkit-animation-iteration-count: 1;
+   animation-iteration-count: 1;
+}
+
+
+.swingxy{
   -webkit-animation: swingxy 0.3s ease;
   animation: swingxy 0.3s ease;
+   -webkit-animation-iteration-count: 1;
+   animation-iteration-count: 1;
+}
+.full{
+  -webkit-animation: swingxy 0.3s ease-in-out;
+  animation: swingxy 0.3s ease-in-out;
    -webkit-animation-iteration-count: 1;
    animation-iteration-count: 1;
 }
