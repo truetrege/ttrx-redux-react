@@ -371,7 +371,7 @@ $grid-breakpoints: (
     } 
     .next-block-1{
         transform: scale(.75);
-        margin-top: 0px;
+        margin-top: -7px;
     }
     .next-block-header{
         align-items: center;
@@ -387,24 +387,24 @@ $grid-breakpoints: (
 
 @-webkit-keyframes swing {
   15% {
-    -webkit-transform: translateX(9px);
-    transform: translateX(9px);
+    -webkit-transform: translateX(4px);
+    transform: translateX(4px);
   }
   30% {
-    -webkit-transform: translateX(-9px);
-    transform: translateX(-9px);
+    -webkit-transform: translateX(-4px);
+    transform: translateX(-4px);
   }
   40% {
-    -webkit-transform: translateX(6px);
-    transform: translateX(6px);
+    -webkit-transform: translateX(2px);
+    transform: translateX(2px);
   }
   50% {
-    -webkit-transform: translateX(-6px);
-    transform: translateX(-6px);
+    -webkit-transform: translateX(-2px);
+    transform: translateX(-2px);
   }
   65% {
-    -webkit-transform: translateX(3px);
-    transform: translateX(3px);
+    -webkit-transform: translateX(1px);
+    transform: translateX(1px);
   }
   100% {
     -webkit-transform: translateX(0);
