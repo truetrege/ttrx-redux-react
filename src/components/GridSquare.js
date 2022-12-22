@@ -22,7 +22,7 @@ export default function GridSquare(props) {
        setTimeout(() => {
         dispatch(mouseUp());
         dispatch(checkCollapse())
-      }, 300);
+      }, 200);
 
       }}
     onTouchMove={(e)=>{
@@ -52,7 +52,7 @@ export default function GridSquare(props) {
       setTimeout(() => {
         dispatch(mouseUp());
         dispatch(checkCollapse())
-      }, 300);
+      }, 200);
       // dispatch(checkCollapse())
       
       
