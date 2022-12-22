@@ -1,8 +1,81 @@
 export const random = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
+
+export const brickcolors = [
+    'red',
+    'red',
+    'pink',
+    'purple',
+    'deep-purple',
+    'indigo',
+    'blue',
+    'light-blue',
+    'cyan',
+    'teal',
+    'green',
+    'light-green',
+    'lime',
+    'yellow',
+    'amber',
+    'orange',
+    'deep-orange',
+    'brown',
+    'grey',
+    'black',
+    'blue-grey'
+];
+export const brickAnimation = [
+    'animate__bounce',
+    'animate__bounce',
+    'animate__pulse',
+    'animate__shakeX',
+    'animate__rubberBand',
+    'animate__shakeY',
+    'animate__swing',
+    'animate__tada',
+    'animate__wobble',
+    'animate__jello',
+    'animate__heartBeat',
+    'animate__backInDown',
+    'animate__bounceIn',
+    'animate__flip',
+    'animate__flipInX',
+    'animate__flipInY',
+    'animate__lightSpeedInRight',
+    'animate__rotateIn',
+    'animate__rotateInDownLeft',
+    'animate__jackInTheBox',
+    'animate__zoomIn',
+    'animate__zoomInDown',
+    'animate__zoomInLeft',
+    'animate__zoomInRight',
+    'animate__zoomInUp',
+    'animate__slideInDown',
+    'animate__slideInLeft',
+    'animate__slideInRight',
+    'animate__slideInUp',
+    
+
+
+];
+
+export const generateTheme = ()=>{
+
+    const is_daring = random(1,2)==1?' is-dragging ':'';
+    const is_no_shadow = random(1,2)==1?' no-shadow ':'';
+    const is_brick_close = random(1,2)==1?' brick-closed ':'';
+    
+    return [
+        brickcolors[random(1,brickcolors.length-1)]+' '+" animate__animated animate__faster "+brickAnimation[random(1,brickAnimation.length-1)]+is_no_shadow,
+        brickcolors[random(1,brickcolors.length-1)]+' '+" animate__animated animate__faster "+brickAnimation[random(1,brickAnimation.length-1)]+is_daring+is_brick_close,
+        brickcolors[random(1,brickcolors.length-1)]+' '+" animate__animated animate__faster "+brickAnimation[random(1,brickAnimation.length-1)]+is_brick_close,
+        ' '+" animate__animated animate__faster "+brickAnimation[random(1,brickAnimation.length-1)],
+    ];
+}
 export const themes = [
     {name:'синяя',colors:['brown swingxy','red is-dragging swingyx','blue swing']},
+    {name:'синяяfybv',colors:['brown swingxy','red is-dragging swingyx','blue swing']},
     {name:'синяя-2уровня',colors:['brown no-shadow swingxy','red is-dragging swingyx','blue is-dragging  swing']},
     
     {name:'зеленая',colors:['light-blue ','light-green is-dragging swing','green  is-dragging swing']},
@@ -25,7 +98,17 @@ export const themes = [
 
     {name:'черно-желтая',colors:['brown ','yellow is-dragging swingy','black is-dragging swingxy']},
     {name:'черно-желтая-закр',colors:['brown ','yellow is-dragging swingy','black is-dragging swingxy brick-closed']},
+
+    {name:'анимация',
+        random:true,
+        colors:generateTheme(),
+    },
+
+ 
 ]; 
+
+
+
 
 export const gridDefault = () => {
     const rows = 11

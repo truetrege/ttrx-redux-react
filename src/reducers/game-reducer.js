@@ -3,13 +3,14 @@ import {
     pushSelectedGridSquares, saveHistory, checkPushSelectedGridSquares,
     changeSelectedGrid, checkSelectedShape, fixSelectedGrid, checkSelectedGrid, shapes,
     randomShape, checkInscribeShape, clearSelected, colapseGrid, defaultState,
-    getColapsedGrid, getColapsedScore, initState, saveTop
+    getColapsedGrid, getColapsedScore, initState, saveTop, generateTheme
 } from '../utils'
 
 import {
     MOUSE_MOVE, RESTART, BACK, MOUSE_DOWN, MOUSE_UP, SETTINGS, NEW_GAME, CHANGE_THEME, CHECK_COLLAPSE
 } from '../actions'
 
+import { themes } from '../utils'
 
 
 const gameReducer = (state = initState(), action) => {
@@ -69,7 +70,9 @@ const gameReducer = (state = initState(), action) => {
 
             return { ...state, newGameModal: action.cancel }
         case CHANGE_THEME:
-
+            if(themes[action.theme].random){
+                themes[action.theme].colors =generateTheme(); 
+            }
             return { ...state, theme: action.theme }
         case MOUSE_UP:
             if (state.fixSquares === true) {

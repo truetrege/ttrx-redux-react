@@ -6,6 +6,7 @@ import { createStore } from 'redux'
 
 import logo from './logo.svg';
 import './App.css';
+import './animate.min.css';
 import './lego.scss';
 import Game from './components/Game';
 

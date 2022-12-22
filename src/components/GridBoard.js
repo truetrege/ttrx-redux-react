@@ -23,7 +23,12 @@ export default function GridBoard(props) {
 
       let color = colors[square]
       if(full){
-        color += ' full';
+        if(themes[theme].colors[3]){
+          color += ' '+themes[theme].colors[3];
+        }else{
+          color += ' full';
+        }
+        
       }
       
       const k = row * grid[0].length + col;
