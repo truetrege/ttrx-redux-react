@@ -50,7 +50,7 @@ export default function Game(props) {
         </div>
         <ModalGameOver />
         <ModalNewGame />
-        <ModalSettings data-modal-color="teal" />
+        <ModalSettings  />
         </>
 
     )

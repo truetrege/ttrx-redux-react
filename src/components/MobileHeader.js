@@ -5,15 +5,11 @@ import NextBlock from './NextBlock'
 
 export default function MobileHeader(props) {
     const game = useSelector((state) => state.game)
-    const { top } = game
     const { score } = game
     const dispatch = useDispatch()
 
 
-    const list = top.map((value) => {
-    
-        return <li className=''>{value}</li>
-    })
+   
 
     return (
         <header className="App-header">

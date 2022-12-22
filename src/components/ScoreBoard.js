@@ -13,7 +13,7 @@ export default function ScoreBoard(props) {
             { score }
             </div>
         </div>
-            <Top key='top2x' />
+            <Top key='top2x' pp='321' />
         </>
         
     )

@@ -84,8 +84,9 @@ const gameReducer = (state = initState(), action) => {
 
                 if (fitFirstShape || fitSecondShape) {
                     const previousState = { ...state };
+                    previousState.previousState = null;
 
-
+                    state.fixSquares = true;
                     state.score += state.selectedGridSqueares.length;
                     state.grid = fixSelectedGrid(state.grid);
                     state.selectedGridSqueares = [];
@@ -116,21 +117,29 @@ const gameReducer = (state = initState(), action) => {
                 state.grid = colapseGrid(state.grid, colapsed)
                 state.score += getColapsedScore(colapsed)
 
-
-                const previousState = state.previousState;
+                // const previousState = {...state};
 
                 state.moutionEnd = true;
-                state.mouseDown = false
-                state.previousState = previousState;
-                const isGameOver = checkInscribeShape(state.grid, state.nextShape1)
-                    || checkInscribeShape(state.grid, state.nextShape2);
-                state.gameOver = !isGameOver
-                if (isGameOver) {
-                    saveHistory(state)
-                } else {
-
-                }
+                state.mouseDown = false;
+                state.settings = false;
+                // state.previousState = {...previousState};
+                
             }
+
+            const isGameOver = checkInscribeShape(state.grid, state.nextShape1)
+                    || checkInscribeShape(state.grid, state.nextShape2);
+            state.gameOver = !isGameOver
+            if(state.fixSquares){
+
+                saveHistory(state)
+                state.fixSquares = false;
+            }   
+
+            // if (isGameOver) {
+            //     saveHistory(state)
+            // } else {
+
+            // }
 
 
             return state;

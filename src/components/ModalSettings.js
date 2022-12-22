@@ -43,7 +43,7 @@ export default function ModalSettings(props) {
                 <button className="btn btn-success " onClick={(e) => {dispatch(newGame());}}>новая игра </button>
                 <button className="btn btn-success mt-3" onClick={(e) => {dispatch(back());dispatch(settings(false));}}>назад</button>
     
-              <Top key='213' />
+              <Top key={1234} pp='123' />
             </div>
             <div>
               <div className="text-center">смена темы</div>

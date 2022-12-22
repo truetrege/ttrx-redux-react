@@ -262,6 +262,7 @@ export const getHistory = () =>{
 }
 export const saveTop = (list,score)=>{
     list.push(score)
+    list = list.filter((v, i, a) => a.indexOf(v) === i)
     list.sort((a, b) => b - a);
     if(list.length > 10 ){
         list.pop();
