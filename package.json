@@ -1,5 +1,6 @@
 {
   "name": "ttrx",
+  "homepage" : "https://truetrege.github.io/ttrx-redux-react/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
