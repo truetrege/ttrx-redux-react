@@ -27,14 +27,11 @@ export default function ModalNewGame(props) {
       backdrop="static"
       keyboard={false}
       onHide={handleClose}>
-            <div className="modal-header justify-content-center">
-                <div className="modal-title  h4">
-                    Начать новую игру
-                </div>
             
-            </div>
           <Modal.Body>
-            <div></div>
+            <div>
+              начать игру заново?
+            </div>
             
           </Modal.Body>
           <Modal.Footer>

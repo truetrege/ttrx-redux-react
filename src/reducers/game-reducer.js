@@ -59,7 +59,7 @@ const gameReducer = (state = initState(), action) => {
             return state;
         case MOUSE_DOWN:
 
-           
+
 
             return { ...state, mouseDown: true, fixSquares: false, }
         case SETTINGS:
@@ -97,7 +97,7 @@ const gameReducer = (state = initState(), action) => {
                     } else if (fitSecondShape) {
                         state.nextShape2 = randomShape();
                     }
-                    return { ...state,previousState:previousState, mouseDown: false }
+                    return { ...state, previousState: previousState, mouseDown: false }
                 }
             }
             return { ...state, mouseDown: false }
@@ -109,29 +109,30 @@ const gameReducer = (state = initState(), action) => {
             return { ...previousState, selectedGridSqueares: [], mouseDown: false }
         case CHECK_COLLAPSE:
 
-        
+
             const colapsed = getColapsedGrid(state.grid)
             if (colapsed.rows.length !== 0 || colapsed.cols.length !== 0) {
-    
+
                 state.grid = colapseGrid(state.grid, colapsed)
                 state.score += getColapsedScore(colapsed)
-    
-    
+
+
                 const previousState = state.previousState;
-    
+
                 state.moutionEnd = true;
                 state.mouseDown = false
                 state.previousState = previousState;
+                const isGameOver = checkInscribeShape(state.grid, state.nextShape1)
+                    || checkInscribeShape(state.grid, state.nextShape2);
+                state.gameOver = !isGameOver
+                if (isGameOver) {
+                    saveHistory(state)
+                } else {
+
+                }
             }
-    
-            const isGameOver = checkInscribeShape(state.grid, state.nextShape1)
-                || checkInscribeShape(state.grid, state.nextShape2);
-            state.gameOver = !isGameOver
-            if (isGameOver) {
-                saveHistory(state)
-            } else {
-    
-            }
+
+
             return state;
         case RESTART:
 

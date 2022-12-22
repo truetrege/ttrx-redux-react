@@ -23,7 +23,8 @@ export default function ModalSettings(props) {
       <>
     
     <Modal show={menuModal}  {...props}
-      size="lg"
+    data-modal-color="blue"
+      size="fullscreen"
       aria-labelledby="contained-modal-title-vcenter"
       centered
       backdrop="static"
@@ -31,24 +32,27 @@ export default function ModalSettings(props) {
       onHide={handleClose}>
             <div className="modal-header justify-content-center">
                 <div className="modal-title  h4">
-                    Настройки
+                    Меню
                 </div>
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={handleShow}></button>
 
             </div>
-          <Modal.Body>
-
-            <div className='mobile-menu'>
-                <button className="btn btn-success" onClick={(e) => {dispatch(newGame());}}>новая игра </button>
-                <button className="btn btn-success" onClick={(e) => {dispatch(back());}}>назад</button>
+            <div className="modal-body d-flex flex-column justify-content-between">
+           
+            <div className='mobile-menu d-flex flex-column'>
+                <button className="btn btn-success " onClick={(e) => {dispatch(newGame());}}>новая игра </button>
+                <button className="btn btn-success mt-3" onClick={(e) => {dispatch(back());dispatch(settings(false));}}>назад</button>
     
               <Top key='213' />
             </div>
             <div>
+              <div className="text-center">смена темы</div>
               <Themes />
             </div>
+           
             
-          </Modal.Body>
+            
+          </div>
           <Modal.Footer>
         
           </Modal.Footer>

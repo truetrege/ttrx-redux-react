@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { changeTheme } from '../actions'
+import { settings } from '../actions'
 import { themes } from '../utils'
 
 export default function Themes(props) {
@@ -22,9 +23,10 @@ export default function Themes(props) {
     })
 
     return (
-        <select className=''
+        <select className='form-select custom-select'
         onChange={(e)=>{
             dispatch(changeTheme(e.target.value));
+            dispatch(settings(false))
             // console.log(e.target.value)
         }
         }

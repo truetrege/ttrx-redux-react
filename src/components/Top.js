@@ -8,12 +8,12 @@ export default function Top(props) {
 
     const list = top.map((value,ind) => {
         const key = value*ind;
-        return <li className='' key={key}>{value}</li>
+        return <li className='list-group-item' key={key}>{ind+1}. {value}</li>
     })
 
     return (
-        <div className="top10">
-            <div className="mb-5"> TOP 10</div>
+        <div className="top10 mt-2">
+            <div className="mb-1 text-center"> TOP 10</div>
             <div>
                 <ol className="top-ol list-group">{list}</ol>
             </div>
