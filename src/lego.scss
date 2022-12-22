@@ -577,7 +577,7 @@ $grid-breakpoints: (
 }
 
 
-.no-shadow,.full,.swing {
+.swing {
   -webkit-animation: swing 0.3s ease;
   animation: swing 0.3s ease;
    -webkit-animation-iteration-count: 1;
@@ -589,7 +589,7 @@ $grid-breakpoints: (
    -webkit-animation-iteration-count: 1;
    animation-iteration-count: 1;
 }
-.swingxy{
+.no-shadow,.full,.swingxy{
   -webkit-animation: swingxy 0.3s ease;
   animation: swingxy 0.3s ease;
    -webkit-animation-iteration-count: 1;
