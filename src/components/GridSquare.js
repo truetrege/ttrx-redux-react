@@ -34,11 +34,13 @@ export default function GridSquare(props) {
       const el = document.elementFromPoint(clientX, clientY)
       // console.log({el});
       if(el === null || el.attributes.row === undefined){
-        dispatch(mouseUp())
+        // dispatch(mouseUp())
         return;
+      }else{
+
+        dispatch(mouseMove(parseInt(el.attributes.row.nodeValue),parseInt(el.attributes.col.nodeValue)))}
       }
 
-      dispatch(mouseMove(parseInt(el.attributes.row.nodeValue),parseInt(el.attributes.col.nodeValue)))}
     } 
     onMouseMove={(e)=>dispatch(mouseMove(props.row,props.col))} 
     onMouseDown={(e)=>{
