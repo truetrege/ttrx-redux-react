@@ -230,7 +230,7 @@ $curent-square-width-next-min:$curent-square-width-min/2;
     .brick {
         // color: #f63;
         background-color: currentColor;
-        padding: $brick-wall-thickness-min;
+        //padding: $brick-wall-thickness-min;
         min-width: $brick-square-min;
         min-height: $brick-square-min;
         box-shadow: inset -1px -1px 0 rgba(0,0,0,.2), inset 1px 1px 0 rgba(#fff, .2);
@@ -246,7 +246,7 @@ $curent-square-width-next-min:$curent-square-width-min/2;
 .brick {
     // color: #f63;
     background-color: currentColor;
-    padding: $brick-wall-thickness-min/2;
+   // padding: $brick-wall-thickness-min/2;
     min-width: $brick-square-min/2;
     min-height: $brick-square-min/2;
     box-shadow: inset -1px -1px 0 rgba(0,0,0,.2), inset 1px 1px 0 rgba(#fff, .2);
