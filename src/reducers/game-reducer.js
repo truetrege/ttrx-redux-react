@@ -3,7 +3,7 @@ import {
     pushSelectedGridSquares, saveHistory, checkPushSelectedGridSquares,
     changeSelectedGrid, checkSelectedShape, fixSelectedGrid, checkSelectedGrid, shapes,
     randomShape, checkInscribeShape, clearSelected, colapseGrid, defaultState,
-    getColapsedGrid, getColapsedScore, initState, saveTop, generateTheme
+    getColapsedGrid, getColapsedScore, initState, saveTop, generateTheme, randomColor
 } from '../utils'
 
 import {
@@ -91,15 +91,32 @@ const gameReducer = (state = initState(), action) => {
 
                     state.fixSquares = true;
                     state.score += state.selectedGridSqueares.length;
-                    state.grid = fixSelectedGrid(state.grid);
                     state.selectedGridSqueares = [];
                     if (fitFirstShape && fitSecondShape) {
-                        state.nextShape1 = randomShape();
-                    } else if (fitFirstShape) {
 
+                        if(themes[state.theme].colored){
+                            state.grid = fixSelectedGrid(state.grid,state.nextColors.nextShape1);
+                        }else{
+                            state.grid = fixSelectedGrid(state.grid);
+                        }
                         state.nextShape1 = randomShape();
+                        state.nextColors.nextShape1 = randomColor()
+                    } else if (fitFirstShape) {
+                        if(themes[state.theme].colored){
+                            state.grid = fixSelectedGrid(state.grid,state.nextColors.nextShape1);
+                        }else{
+                            state.grid = fixSelectedGrid(state.grid);
+                        }
+                        state.nextShape1 = randomShape();
+                        state.nextColors.nextShape1 = randomColor()
                     } else if (fitSecondShape) {
+                        if(themes[state.theme].colored){
+                            state.grid = fixSelectedGrid(state.grid,state.nextColors.nextShape2);
+                        }else{
+                            state.grid = fixSelectedGrid(state.grid);
+                        }
                         state.nextShape2 = randomShape();
+                        state.nextColors.nextShape2 = randomColor()
                     }
                     return { ...state, previousState: previousState, mouseDown: false }
                 }

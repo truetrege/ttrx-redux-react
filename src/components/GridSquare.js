@@ -44,10 +44,6 @@ export default function GridSquare(props) {
     } 
     onMouseMove={(e)=>{
 
-      
-    //  console.log(props.row,props.col)
-
-
       dispatch(mouseMove(props.row,props.col))
       
     }} 

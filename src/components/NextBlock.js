@@ -1,6 +1,6 @@
 
 import { useSelector } from 'react-redux'
-import { shapes } from '../utils'
+import { brickcolors, shapes } from '../utils'
 import { themes } from '../utils'
 
 
@@ -11,7 +11,8 @@ export default function NextBlock(props) {
   const game = useSelector((state) => state.game)
     const { theme } = game
     const nextShape = useSelector((state) => state.game[props.shape])
-   
+    const nextColor = game.nextColors[props.shape];
+//    console.log(props.shape,game.nextColors[props.shape])
     const box = shapes[nextShape];
     const size = Array.isArray(box[0])?box[0].length:box.length;
     // console.log(box)
@@ -21,7 +22,10 @@ export default function NextBlock(props) {
     const grid = box.map((rowArray, row) => {
         if(Array.isArray(rowArray)){
             return rowArray.map((square, col) => {
-                  let color = colors[square]
+                  let color = colors[square];
+                  if(themes[theme].colored){
+                    color = brickcolors[nextColor];
+                }
                   if(square===0) color="none"
                 return <GridSquare key={`${row}${col}`} color={color} />
             })

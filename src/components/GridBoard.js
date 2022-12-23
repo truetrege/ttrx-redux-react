@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import GridSquare from './GridSquare'
-import { themes } from '../utils'
+import { brickcolors, themes } from '../utils'
 import { checkEndGame, mouseUp } from '../actions'
 
 // Represents a 10 x 18 grid of grid squares
@@ -24,7 +24,14 @@ export default function GridBoard(props) {
 
      
 
-      let color = colors[square]
+      let color = colors[square];
+      if(square > 2){
+        if(themes[theme].colored){
+
+          color = brickcolors[square];
+        }
+      }
+
       if (full) {
         if (themes[theme].colors[3]) {
           color += ' ' + themes[theme].colors[3];
@@ -41,7 +48,9 @@ export default function GridBoard(props) {
         key={k}
         row={row}
         col={col}
-        color={color} />
+        color={color} 
+        
+        />
     })
   })
 
