@@ -11,7 +11,7 @@ export default function NextBlock(props) {
   const game = useSelector((state) => state.game)
     const { theme } = game
     const nextShape = useSelector((state) => state.game[props.shape])
-    const nextColor = game.nextColors[props.shape];
+    const nextColor = game.nextColors?game.nextColors[props.shape]:null;
 //    console.log(props.shape,game.nextColors[props.shape])
     const box = shapes[nextShape];
     const size = Array.isArray(box[0])?box[0].length:box.length;
