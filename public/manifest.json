@@ -21,6 +21,6 @@
   "theme_color": "#282c34",
   "background_color": "#282c34",
   "start_url": "https://truetrege.github.io/ttrx-redux-react/",
-  "display": "fullscreen",
+  "display": "standalone",
   "orientation": "natural"
 }
