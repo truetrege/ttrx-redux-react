@@ -19,7 +19,7 @@
     }
   ],
   "theme_color": "#282c34",
-  "background_color": "#EF5350",
+  "background_color": "#282c34",
   "start_url": "https://truetrege.github.io/ttrx-redux-react/",
   "display": "fullscreen",
   "orientation": "natural"

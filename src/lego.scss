@@ -368,11 +368,11 @@ $grid-breakpoints: (
         display: flex !important;
     }
     .next-block-1,.next-block-2,.next-block-3,.next-block-4{
-        // transform: scale(.7);
-        margin-top: .5rem;
+        //transform: scale(.7);
+        // margin-top: .5rem;
     }
     .next-block-3{
-        margin-top: 20px;
+        // margin-top: 20px;
     } 
     .next-block-1{
         transform: scale(.75);
@@ -381,10 +381,10 @@ $grid-breakpoints: (
     .next-block-header{
         align-items: center;
     justify-content: flex-start;
-    height: 100px;
-    width: 200px;
+    // height: 100px;
+    // width: 200px;
     }
-    .next-block-header .next-block-container{
+    .next-block-header .next-block-container:first-child{
         margin-right: 1rem;;
     }
     

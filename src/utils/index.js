@@ -145,7 +145,7 @@ export const gridDefault = () => {
 }
 // Random Shape
 export const randomShape = () => {
-    // return 0;
+    // return 2;
     return random(1, shapes.length - 1)
 }
 
@@ -392,7 +392,7 @@ export const saveTop = (list, score) => {
     list.push(score)
     list = list.filter((v, i, a) => a.indexOf(v) === i)
     list.sort((a, b) => b - a);
-    if (list.length > 10) {
+    if (list.length >= 10) {
         list.pop();
     }
     return list;
