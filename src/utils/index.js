@@ -325,24 +325,56 @@ export const getColapsedGrid = (grid) => {
     }
     return colapsedGrid;
 };
-const colapseRows = (grid, rows) => {
+// const colapseRows = (grid, rows) => {
 
+//     // console.log(rows)
+//     rows.sort((a, b) => b.ind - a.ind);
+//     rows.forEach((element) => grid.splice(element.ind, 1));
+//     // console.log(rows,grid)
+//     const gridLength = grid[0].length;
+//     const rowLength = grid.length;
+
+//     rows.forEach((element) => {
+//         const newRow = [];
+//         for (let i = 0; i < gridLength; i++) {
+//             newRow.push(0);
+//         }
+//         if (element.ind <= rowLength / 2) {
+//             grid.unshift(newRow);
+//         } else {
+//             grid.push(newRow);
+//         }
+//     });
+
+//     return grid;
+// };
+const colapseRows = (grid, rows) => {
+    const gridLength = grid[0].length;
+    const rowLength = grid.length;
+
+    const middle = (rowLength / 2) + 0.5 ;
     // console.log(rows)
     rows.sort((a, b) => b.ind - a.ind);
     rows.forEach((element) => grid.splice(element.ind, 1));
     // console.log(rows,grid)
-    const gridLength = grid[0].length;
-    const rowLength = grid.length;
+ 
+console.log(rowLength,middle,rows)
 
     rows.forEach((element) => {
         const newRow = [];
         for (let i = 0; i < gridLength; i++) {
             newRow.push(0);
         }
-        if (element.ind <= rowLength / 2) {
+        if (element.ind + 1 < middle) {
             grid.unshift(newRow);
-        } else {
+        } else if(element.ind + 1 > middle)  {
             grid.push(newRow);
+        }else{
+           if( Math.random() < 0.5){
+              grid.unshift(newRow);
+           }else{
+              grid.push(newRow);
+           }
         }
     });
 

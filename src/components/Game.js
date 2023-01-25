@@ -14,6 +14,12 @@ import RightContainer from './RightContainer'
 
 
 export default function Game(props) {
+    window.history.pushState('forward', null, '#game');
+    window.onpopstate = function(event) {    
+        if(event && event.state) {
+            window.location.reload(); 
+        }
+    }
 
     const game = useSelector((state) => state.game)
     const { score } = game

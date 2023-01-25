@@ -1,3 +1,9 @@
+body{
+  overscroll-behavior-x: contain;
+  overscroll-behavior-y: contain;
+  overflow-y: auto;
+}
+
 .App {
   text-align: center;
 }
