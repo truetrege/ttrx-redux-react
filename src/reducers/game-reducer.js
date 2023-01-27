@@ -7,7 +7,7 @@ import {
 } from '../utils'
 
 import {
-    MOUSE_MOVE, RESTART, BACK, MOUSE_DOWN, MOUSE_UP, SETTINGS, NEW_GAME, CHANGE_THEME, CHECK_COLLAPSE
+    MOUSE_MOVE, RESTART, BACK, MOUSE_DOWN, MOUSE_UP, SETTINGS, NEW_GAME, CHANGE_THEME, CHECK_COLLAPSE, CHANGE_RANDOM, RESIZE
 } from '../actions'
 
 import { themes } from '../utils'
@@ -173,6 +173,12 @@ const gameReducer = (state = initState(), action) => {
 
 
             return { ...newState, gameOver: false }
+        case CHANGE_RANDOM:
+
+            return { ...state, modeRandom: action.mode }
+        case RESIZE:
+
+            return { ...state, size: {width:window.innerWidth,height:window.innerWidth} }
         default:
             return state
     }

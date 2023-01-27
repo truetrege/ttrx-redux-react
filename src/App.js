@@ -6,21 +6,21 @@ import { createStore } from 'redux'
 
 import logo from './logo.svg';
 import './App.css';
+
 import './animate.min.css';
+
 import './lego.scss';
 import Game from './components/Game';
-
 
 
 const store = createStore(reducers)
 
 function App() {
 
-
   //  console.log(store)
   return (
     <Provider store={store}>
-      <div className="App">
+      <div className="App" >
         <Game />
       </div>
     </Provider>

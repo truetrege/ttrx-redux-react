@@ -146,6 +146,7 @@ export const gridDefault = () => {
 // Random Shape
 export const randomShape = () => {
     // return 2;
+    console.log(shapes.length)
     return random(1, shapes.length - 1)
 }
 
@@ -233,6 +234,7 @@ export const defaultState = () => {
             nextShape2: randomColor(),
         },
 
+        randomMode:0,
         isRunning: true,
         score: 0,
         gameOver: false,
@@ -243,7 +245,11 @@ export const defaultState = () => {
         previousState: null,
         top: getTop(),
         fixSquares: false,
-        theme: getTheme()
+        theme: getTheme(),
+        size:{
+            width:window.innerWidth,
+            height:window.innerHeight,
+        }
     }
 }
 export const checkSelectedShape = (selected, shape) => {
@@ -358,7 +364,7 @@ const colapseRows = (grid, rows) => {
     rows.forEach((element) => grid.splice(element.ind, 1));
     // console.log(rows,grid)
  
-console.log(rowLength,middle,rows)
+
 
     rows.forEach((element) => {
         const newRow = [];
@@ -442,4 +448,66 @@ export const getTheme = () => {
         return history.theme
     }
     return 0;
+}
+
+
+
+const randomBug = function* () {
+  let bag = [];
+
+
+
+  while (true) {
+    if (bag.length === 0) {
+      bag = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
+     // bag = shuffle(bag);
+    }
+    yield bag.pop();
+  }
+}
+
+
+
+const randomTgm3= function* () {
+  let pieces = ['I', 'J', 'L', 'O', 'S', 'T', 'Z'];
+  let order = [];
+
+  // Create 35 pool.
+  let pool = pieces.concat(pieces, pieces, pieces, pieces);
+
+  // First piece special conditions
+  const firstPiece = ['I', 'J', 'L', 'T'][Math.floor(Math.random() * 4)];
+  yield firstPiece;
+
+  let history = ['S', 'Z', 'S', firstPiece];
+
+  while (true) {
+    let roll;
+    let i;
+    let piece;
+
+    // Roll For piece
+    for (roll = 0; roll < 6; ++roll) {
+      i = Math.floor(Math.random() * 35);
+      piece = pool[i];
+      if (history.includes(piece) === false || roll === 5) {
+        break;
+      }
+      if (order.length) pool[i] = order[0];
+    }
+
+    // Update piece order
+    if (order.includes(piece)) {
+      order.splice(order.indexOf(piece), 1);
+    }
+    order.push(piece);
+
+    pool[i] = order[0];
+
+    // Update history
+    history.shift();
+    history[3] = piece;
+
+    yield piece;
+  }
 }

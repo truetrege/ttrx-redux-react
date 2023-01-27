@@ -7,6 +7,8 @@ export const NEW_GAME = "NEW_GAME"     // Restart Game
 export const BACK = "BACK"     // Restart Game
 export const CHECK_COLLAPSE = "CHECK_COLLAPSE"     // Restart Game
 export const CHANGE_THEME = "CHANGE_THEME"     // Restart Game
+export const RESIZE = "RESIZE"     // Restart Game
+export const CHANGE_RANDOM = "CHANGE_RANDOM"     // Restart Game
 
 export const mouseMove = (row, col) => {
   return { type: MOUSE_MOVE, row: row, col: col }
@@ -29,6 +31,12 @@ export const settings = (cancel = true) => {
 
 export const back = () => {
   return { type: BACK }
+}
+export const resize = () => {
+  return { type: RESIZE }
+}
+export const changeRandom = (mode = 0) => {
+  return { type: CHANGE_RANDOM ,mode: mode}
 }
 export const newGame = (cancel = true) => {
   return { type: NEW_GAME, cancel: cancel }

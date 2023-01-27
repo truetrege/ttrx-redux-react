@@ -1,15 +1,15 @@
 import React from 'react'
 import GridBoard from './GridBoard'
-import NextBlock from './NextBlock'
-import ScoreBoard from './ScoreBoard'
+
 import ModalGameOver from './ModalGameOver'
 import ModalNewGame from './ModalNewGame'
 import ModalSettings from './ModalSettings'
 import MobileHeader from './MobileHeader'
 import { useSelector, useDispatch } from 'react-redux'
-import { restart ,back, newGame, settings } from '../actions'
+
 import LeftContainer from './LeftContainer'
 import RightContainer from './RightContainer'
+
 
 
 
@@ -21,10 +21,19 @@ export default function Game(props) {
         }
     }
 
+  
+    
     const game = useSelector((state) => state.game)
     const { score } = game
-    const dispatch = useDispatch()
-    const windowInnerWidth = window.innerWidth
+    const dispatch = useDispatch();
+   
+
+    // window.addEventListener('resize', () => {
+    //     dispatch(resize());
+    // });
+    // const windowInnerWidth = game.size.width
+    // const windowInnerHeight = game.size.height  
+      const windowInnerWidth = window.innerWidth
     const windowInnerHeight = window.innerHeight
 
     let header = <MobileHeader />;

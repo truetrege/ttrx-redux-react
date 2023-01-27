@@ -1,5 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import './bootstrap.min.css';
+import './bootstrap-icons.css';
+import './PressStart2P.css';
+
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
