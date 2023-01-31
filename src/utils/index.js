@@ -60,7 +60,6 @@ export const brickAnimation = [
     'animate__slideInUp',
 
 
-
 ];
 
 export const generateTheme = () => {
@@ -69,10 +68,20 @@ export const generateTheme = () => {
     const is_no_shadow = random(1, 2) == 1 ? ' no-shadow ' : '';
     const is_brick_close = random(1, 2) == 1 ? ' brick-closed ' : '';
 
+    let bck = brickcolors[random(1, brickcolors.length - 1)] ;  
+    let scltd  = bck;
+    let fxd   = bck;
+    while(bck ===scltd){
+        scltd = brickcolors[random(1, brickcolors.length - 1)] ;
+    }
+    while(bck ===fxd || scltd === fxd){
+        fxd = brickcolors[random(1, brickcolors.length - 1)] ;
+    }
+
     return [
-        brickcolors[random(1, brickcolors.length - 1)] + ' ' + " animate__animated animate__faster " + brickAnimation[random(1, brickAnimation.length - 1)] + is_no_shadow,
-        brickcolors[random(1, brickcolors.length - 1)] + ' ' + " animate__animated animate__faster " + brickAnimation[random(1, brickAnimation.length - 1)] + is_daring + is_brick_close,
-        brickcolors[random(1, brickcolors.length - 1)] + ' ' + " animate__animated animate__faster " + brickAnimation[random(1, brickAnimation.length - 1)] + is_brick_close,
+        bck + ' ' + " animate__animated animate__faster " + brickAnimation[random(1, brickAnimation.length - 1)] + is_no_shadow,
+        scltd + ' ' + " animate__animated animate__faster " + brickAnimation[random(1, brickAnimation.length - 1)] + is_daring + is_brick_close,
+        fxd + ' ' + " animate__animated animate__faster " + brickAnimation[random(1, brickAnimation.length - 1)] + is_brick_close,
         ' ' + " animate__animated animate__faster " + brickAnimation[random(1, brickAnimation.length - 1)],
     ];
 }
@@ -460,11 +469,29 @@ const randomBug = function* () {
   while (true) {
     if (bag.length === 0) {
       bag = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
-     // bag = shuffle(bag);
+      bag = shuffle(bag);
     }
     yield bag.pop();
   }
 }
+
+const  shuffle = function(array) {
+    let currentIndex = array.length,  randomIndex;
+  
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  
+    return array;
+  }
 
 
 
