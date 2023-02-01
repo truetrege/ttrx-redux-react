@@ -160,7 +160,7 @@ const rndmYldTgm3 = randomTgm3();
 export const randomShape = (level) => {
     // return 2;
     let current;
-    if(level ==0){
+    if(level ==0 || level === undefined){
         current = random(1, shapes.length - 1)    
     }
     if(level==1){
