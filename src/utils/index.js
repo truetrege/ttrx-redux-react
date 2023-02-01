@@ -244,6 +244,13 @@ export const initState = () => {
     }
     return defaultState();
 }
+const historyRandomMode =()=>{
+    const history = getHistory();
+    if (history) {
+        return history.randomMode;
+    }
+    return 0;
+}
 
 export const defaultState = () => {
 
@@ -262,7 +269,7 @@ export const defaultState = () => {
             nextShape2: randomColor(),
         },
 
-        randomMode:0,
+        randomMode:historyRandomMode(),
         isRunning: true,
         score: 0,
         gameOver: false,
