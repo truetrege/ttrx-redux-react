@@ -152,11 +152,26 @@ export const gridDefault = () => {
     }
     return array
 }
+
+const rndmYldBug = randomBug();
+const rndmYldTgm3 = randomTgm3();
+
 // Random Shape
-export const randomShape = () => {
+export const randomShape = (level) => {
     // return 2;
-    console.log(shapes.length)
-    return random(1, shapes.length - 1)
+    let current;
+    if(level ==0){
+        current = random(1, shapes.length - 1)    
+    }
+    if(level==1){
+        current = rndmYldBug.next().value
+    }
+    if(level==2){
+        current = rndmYldTgm3.next().value
+    }
+
+    // console.log(current)
+    return current;
 }
 
 export const shapes = [
@@ -461,14 +476,14 @@ export const getTheme = () => {
 
 
 
-const randomBug = function* () {
+ function* randomBug() {
   let bag = [];
 
 
 
   while (true) {
     if (bag.length === 0) {
-      bag = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
+      bag = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
       bag = shuffle(bag);
     }
     yield bag.pop();
@@ -495,18 +510,19 @@ const  shuffle = function(array) {
 
 
 
-const randomTgm3= function* () {
-  let pieces = ['I', 'J', 'L', 'O', 'S', 'T', 'Z'];
+ function* randomTgm3() {
+  let pieces = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
   let order = [];
 
   // Create 35 pool.
-  let pool = pieces.concat(pieces, pieces, pieces, pieces);
+//   let pool = pieces.concat(pieces, pieces, pieces, pieces);
+  let pool = pieces.concat(pieces, pieces);
 
   // First piece special conditions
-  const firstPiece = ['I', 'J', 'L', 'T'][Math.floor(Math.random() * 4)];
+  const firstPiece = [2,4,8,12][Math.floor(Math.random() * 4)];
   yield firstPiece;
 
-  let history = ['S', 'Z', 'S', firstPiece];
+  let history = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19];
 
   while (true) {
     let roll;
@@ -535,6 +551,7 @@ const randomTgm3= function* () {
     history.shift();
     history[3] = piece;
 
+    // console.log('tgm3',piece)
     yield piece;
   }
 }

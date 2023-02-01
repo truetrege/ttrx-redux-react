@@ -6,6 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 import { restart,settings,newGame,back } from '../actions'
 import Top from './Top';
 import Themes from './Themes';
+import Level from './Level';
 
 
 export default function ModalSettings(props) {
@@ -46,7 +47,8 @@ export default function ModalSettings(props) {
               <Top key={1234} pp='123' />
             </div>
             
-            
+            <div className="text-center">смена сложности</div>
+            <Level />
             
           </div>
           <div className="modal-footer justify-content-center">

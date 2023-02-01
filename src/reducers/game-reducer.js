@@ -99,7 +99,7 @@ const gameReducer = (state = initState(), action) => {
                         }else{
                             state.grid = fixSelectedGrid(state.grid);
                         }
-                        state.nextShape1 = randomShape();
+                        state.nextShape1 = randomShape(state.randomMode);
                         state.nextColors.nextShape1 = randomColor()
                     } else if (fitFirstShape) {
                         if(themes[state.theme].colored){
@@ -107,7 +107,7 @@ const gameReducer = (state = initState(), action) => {
                         }else{
                             state.grid = fixSelectedGrid(state.grid);
                         }
-                        state.nextShape1 = randomShape();
+                        state.nextShape1 = randomShape(state.randomMode);
                         state.nextColors.nextShape1 = randomColor()
                     } else if (fitSecondShape) {
                         if(themes[state.theme].colored){
@@ -115,7 +115,7 @@ const gameReducer = (state = initState(), action) => {
                         }else{
                             state.grid = fixSelectedGrid(state.grid);
                         }
-                        state.nextShape2 = randomShape();
+                        state.nextShape2 = randomShape(state.randomMode);
                         state.nextColors.nextShape2 = randomColor()
                     }
                     return { ...state, previousState: previousState, mouseDown: false }
@@ -175,7 +175,8 @@ const gameReducer = (state = initState(), action) => {
             return { ...newState, gameOver: false }
         case CHANGE_RANDOM:
 
-            return { ...state, modeRandom: action.mode }
+        // console.log(action.mode,state.randomMode)
+            return { ...state, randomMode: action.mode }
         case RESIZE:
 
             return { ...state, size: {width:window.innerWidth,height:window.innerWidth} }
