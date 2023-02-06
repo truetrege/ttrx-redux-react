@@ -235,11 +235,11 @@ export const fixSelectedGrid = (grid, color = 2) => {
 
 export const initState = () => {
     const history = getHistory();
-    if(history.nextShape1 == undefined || history.nextShape1 == null){
-        return defaultState();
 
-    }
     if (history) {
+        if(history.nextShape1 == undefined || history.nextShape1 == null){
+            return defaultState();
+        }
         return history;
     }
     return defaultState();
