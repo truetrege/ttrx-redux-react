@@ -25,7 +25,7 @@ export default function MobileHeader(props) {
 
             </div>
             <div className="d-flex justify-content-center score-container">
-                <div className="rounded-bottom text-white px-2 score-item">{score}</div>
+                <div className="rounded-bottom text-white px-2">{score}</div>
 
             </div>
         </header>
