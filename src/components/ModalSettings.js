@@ -46,7 +46,8 @@ export default function ModalSettings(props) {
     
               <Top key={1234} pp='123' />
             </div>
-            
+            <button className="btn btn-success mt-3"  onClick={(e)=>{window.TelegramGameProxy.shareScore(10)}}>Share score</button>
+
             <div className="text-center">смена сложности</div>
             <Level />
             
